@@ -1,0 +1,27 @@
+\section{Intel SGX}
+
+Intel Software Guard Extensions (SGX) is a set of hardware extensions designed to allow programs to run securely in an environment where all software on the host machine is potentially untrusted. SGX was designed to address the problem of \emph{secure remote computation}, that is, secure execution of software on a remote system controlled by an untrusted party \cite{intel_corporation_intel_2016}. Under this threat model, \emph{all} software on a remote system is potentially malicious, including the operating system and hypervisor. Thus SGX must provide protection from malicious software running at higher privilege levels to user-level programs \cite{costan_intel_2016}. 
+
+SGX provides confidentiality and integrity freshness guarantees through the use of trusted hardware that sequesters a user-level program into a secure container called an \emph{enclave}, and proves to a user that he or she is running unmodified software protected in an enclave by secure hardware \cite{intel_corporation_intel_2016}. This proof is based on \emph{software attestation}, which provides a cryptographic signature encompassing a measurement of the enclaves contents \cite{costan_intel_2016}. 
+
+
+
+\section{Software Side-Channel Attacks}
+
+Side-channel attacks are a class of attacks that leverage information about the physical properties of a system in order to carry out an attack. While physical side-channel attacks against modern hardware are difficult and costly, requiring advanced tools and physical access to the victim machine, software side-channel attacks are inexpensive to deploy and can be executed by anyone with remote access to a system \cite{costan_intel_2016}. The software side-channel attacks discussed here exploit hardware and software implementation details to acquire information about memory access patterns, which can be used to infer secrets from an otherwise secure system \cite{gotzfried_cache_2017, schwarz_malware_2017, xu_controlled-channel_2015, shinde_preventing_2015}. 
+
+Cache timing attacks are used to infer memory access information by exploiting timing differences.
+
+Page fault attacks can be employed by a malicious operating system to determine when a program is accessing specific pages.
+
+\section{Attacks Against SGX Enclaves}
+
+Both cache timing attacks and page fault attacks have been demonstrated against SGX enclaves in proof-of-concept attacks. 
+
+\section{Countermeasures}
+
+A number of countermeasures have been proposed, both for future development of secure hardware, and additional security measures that can be employed by security conscious developers working with the current implementation of SGX.
+
+\section{Future Directions}
+
+\section{Conclusions}
