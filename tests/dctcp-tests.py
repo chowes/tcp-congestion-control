@@ -67,10 +67,10 @@ def dctcp_queue_test(results_file):
     print("Starting iperf server")
     server.sendCmd('iperf -s')
     print("Starting iperf client 1")
-    client1.sendCmd('iperf -c %s -t %d -i 1 -Z reno > %s/iperf_client1.txt'
+    client1.sendCmd('iperf -c %s -t %d -i 1 > %s/iperf_client1.txt'
                     % (server_ip, test_time, results_dir))
     print("Starting iperf client 2")
-    client2.sendCmd('iperf -c %s -t %d -i 1 -Z reno > %s/iperf_client2.txt'
+    client2.sendCmd('iperf -c %s -t %d -i 1 > %s/iperf_client2.txt'
                     % (server_ip, test_time, results_dir))
 
     print("Waiting for hosts to finish...")
@@ -88,10 +88,10 @@ def dctcp_queue_test(results_file):
 if __name__ == '__main__':
     setLogLevel('info')
 
-    # reset to default state
     tcp_utils.disable_dctcp()
-    
     dctcp_queue_test("reno_queue.csv")
+
     tcp_utils.enable_dctcp()
     dctcp_queue_test("dctcp_queue.csv")
+
     tcp_utils.disable_dctcp()
