@@ -33,7 +33,7 @@ class DCTCPTopo(Topo):
 
         link_opts = {
             'bw': 100,
-            'max_queue_size': 1000,
+            'max_queue_size': 1000000,
             'enable_ecn': True
         }
 
