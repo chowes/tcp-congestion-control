@@ -32,7 +32,7 @@ class DCTCPTopo(Topo):
     def build(self, n=3):
 
         link_opts = {
-            'bw': 1000,
+            'bw': 100,
             'max_queue_size': 1000,
             'enable_ecn': True
         }
