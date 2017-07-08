@@ -1,30 +1,36 @@
 import sys
 import os
 
-from subprocess import call
+from subprocess import Popen
 
 
 def __set_tcp_congestion_ctl(congestion_ctl='cubic'):
     if congestion_ctl == 'cubic':
-        call(["sysctl", "-w", "net.ipv4.tcp_congestion_control=cubic"])
+        Popen("sysctl -w net.ipv4.tcp_congestion_control=cubic",
+              shell=True).wait()
     elif congestion_ctl == 'reno':
-        call(["sysctl", "-w", "net.ipv4.tcp_congestion_control=reno"])
+        Popen("sysctl -w net.ipv4.tcp_congestion_control=reno",
+              shell=True).wait()
 
 
 def __enable_ecn():
-    call(["sysctl", "-w", "net.ipv4.tcp_ecn=1"])
+    Popen("sysctl -w net.ipv4.tcp_ecn=1",
+          shell=True).wait()
 
 
 def __disable_ecn():
-    call(["sysctl", "-w", "net.ipv4.tcp_ecn=0"])
+    Popen("sysctl -w net.ipv4.tcp_ecn=0",
+          shell=True).wait()
 
 
 def __enable_dctcp():
-    call(["sysctl", "-w", "net.ipv4.tcp_dctcp_enable=1"])
+    Popen("sysctl -w net.ipv4.tcp_dctcp_enable=1",
+          shell=True).wait()
 
 
 def __disable_dctcp():
-    call(["sysctl", "-w", "net.ipv4.tcp_dctcp_enable=0"])
+    Popen("sysctl -w net.ipv4.tcp_dctcp_enable=0",
+          shell=True).wait()
 
 
 def enable_dctcp():

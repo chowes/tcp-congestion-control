@@ -44,8 +44,14 @@ class DCTCPTopo(Topo):
             self.addLink(host, switch, **link_opts)
 
 
-def dctcp_queue_test(results_file):
+def dctcp_queue_test(use_dctcp, results_file):
     "Run DCTCP queue size tests"
+
+    tcp_utils.disable_dctcp()
+    if use_dctcp is True:
+        tcp_utils.enable_dctcp()
+    else:
+        tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo()
     net = Mininet(topo=topo, link=TCLink)
@@ -80,6 +86,8 @@ def dctcp_queue_test(results_file):
     server.sendInt()
     server.waitOutput()
 
+    print server.cmd("sysctl -a | grep dctcp")
+
     queue_monitor.terminate()
 
     net.stop()
@@ -88,10 +96,7 @@ def dctcp_queue_test(results_file):
 if __name__ == '__main__':
     setLogLevel('info')
 
-    tcp_utils.disable_dctcp()
-    dctcp_queue_test("reno_queue.csv")
-
-    tcp_utils.enable_dctcp()
-    dctcp_queue_test("dctcp_queue.csv")
+    dctcp_queue_test(use_dctcp=False, results_file="reno_queue.csv")
+    dctcp_queue_test(use_dctcp=True, results_file="reno_queue.csv")
 
     tcp_utils.disable_dctcp()
