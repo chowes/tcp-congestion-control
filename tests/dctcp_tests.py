@@ -3,18 +3,21 @@
 import sys
 import os
 
-from mininet.topo import Topo
 from mininet.net import Mininet
-from mininet.link import Link, TCLink
 from mininet.node import CPULimitedHost
+from mininet.link import TCLink
 from mininet.log import setLogLevel
 from mininet.util import dumpNodeConnections
 from mininet.cli import CLI
+
+from dctcp_topo import DCTCPTopo
 
 from time import sleep, time
 from subprocess import Popen, PIPE
 from multiprocessing import Process
 
+# queue length monitoring tools from
+# https://github.com/mininet/mininet-util
 from util.monitor import monitor_qlen
 from util import tcp_utils
 
@@ -26,24 +29,6 @@ switch_server_iface = 's1-eth1'
 results_dir = './results'
 
 
-class DCTCPTopo(Topo):
-    "Single switch topology for testing DCTCP queue length"
-
-    def build(self, n=3):
-
-        link_opts = {
-            'bw': 100,
-            'max_queue_size': 1000000,
-            'enable_ecn': True
-        }
-
-        switch = self.addSwitch('s1')
-
-        for h in range(n):
-            host = self.addHost('host%s' % h)
-            self.addLink(host, switch, **link_opts)
-
-
 def dctcp_queue_test(use_dctcp, results_file):
     "Run DCTCP queue size tests"
 
@@ -53,8 +38,9 @@ def dctcp_queue_test(use_dctcp, results_file):
     else:
         tcp_utils.disable_dctcp()
 
-    topo = DCTCPTopo()
-    net = Mininet(topo=topo, link=TCLink)
+    topo = DCTCPTopo(use_dctcp=use_dctcp, max_q=466)
+    net = Mininet(
+        topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
 
     net.start()
 
@@ -68,7 +54,7 @@ def dctcp_queue_test(use_dctcp, results_file):
     client1, client2 = net.get("host1", "host2")
 
     server_ip = server.IP()
-    test_time = 5
+    test_time = 12
 
     print("Starting iperf server")
     server.sendCmd('iperf -s')
@@ -97,6 +83,6 @@ if __name__ == '__main__':
     setLogLevel('info')
 
     dctcp_queue_test(use_dctcp=False, results_file="reno_queue.csv")
-    dctcp_queue_test(use_dctcp=True, results_file="reno_queue.csv")
+    dctcp_queue_test(use_dctcp=True, results_file="dctcp_queue.csv")
 
     tcp_utils.disable_dctcp()
