@@ -40,6 +40,12 @@ def enable_dctcp():
 
 
 def disable_dctcp():
+    __set_tcp_congestion_ctl('reno')
+    __disable_ecn()
+    __disable_dctcp()
+
+
+def reset_tcp():
     __set_tcp_congestion_ctl('cubic')
     __disable_ecn()
     __disable_dctcp()

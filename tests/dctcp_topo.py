@@ -3,13 +3,18 @@
 from mininet.topo import Topo
 from mininet.link import TCLink, TCIntf, Link
 
-# RED configuration from
-# https://reproducingnetworkresearch.wordpress.com/2013/03/13/cs244-13-dctcp/
-red_config = {
+
+# red calibration from:
+# <add link to 2013 DCTCP stanford project>
+#
+# getting DCTCP marking using RED parameters is not intuitive...
+# we take min = (K x avgpkt) and max = (min + 1)
+# ECN marking should now happen at queue sizes of K
+red_params = {
     'limit': 1000000,
-    'min': 20000,
-    'max': 25000,
-    'avpkt': 1000,
+    'min': 30000,
+    'max': 30001,
+    'avpkt': 1500,
     'burst': 20,
     'prob': 1
 }
@@ -18,31 +23,44 @@ red_config = {
 class DCTCPTopo(Topo):
     "Single switch topology for testing DCTCP queue length"
 
-    def build(self, n=3, bw=100, max_q=None, use_dctcp=False, cpu=None):
+    def build(self, n=3, bw=100, max_q=None, delay=None, cpu=None,
+              use_dctcp=False):
 
         # set host options
         host_opts = {
             'cpu': cpu
         }
 
-        # set link options
-        host_link_opts = {
+        # set sender link options
+        send_link_opts = {
             'bw': bw,
-            'max_queue_size': max_q,
-            'enable_ecn': 1 if use_dctcp is True else 0
+            'delay': delay,
+            'max_queue_size': max_q
+        }
+
+        recv_link_opts = {
+            'bw': bw,
+            'delay': 0,
+            'max_queue_size': max_q
         }
 
         switch_link_opts = {
             'bw': bw,
+            'delay': 0,
             'max_queue_size': max_q,
-            'enable_ecn': 1 if use_dctcp is True else 0,
             'enable_red': 1 if use_dctcp is True else 0,
-            'red_params': red_config
+            'enable_ecn': 0,
+            'red_params': red_params if use_dctcp is True else None
         }
 
         switch = self.addSwitch('s1')
 
         for h in range(n):
-            host = self.addHost('host%s' % h)
-            self.addLink(host, switch, cls=Link, cls1=TCIntf, cls2=TCIntf,
-                         params1=host_link_opts, params2=switch_link_opts)
+            host = self.addHost('h%s' % (h + 1))
+
+        self.addLink('h1', 's1', cls=Link, cls1=TCIntf, cls2=TCIntf,
+                     params1=recv_link_opts, params2=switch_link_opts)
+
+        for h in range(1, n):
+            self.addLink(
+                'h%s' % (h + 1), 's1', **send_link_opts)

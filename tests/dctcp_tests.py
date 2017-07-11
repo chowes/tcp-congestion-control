@@ -5,12 +5,14 @@ import os
 
 from mininet.net import Mininet
 from mininet.node import CPULimitedHost
+from mininet.node import OVSKernelSwitch
 from mininet.link import TCLink
 from mininet.log import setLogLevel
 from mininet.util import dumpNodeConnections
 from mininet.cli import CLI
 
 from dctcp_topo import DCTCPTopo
+from startopo import StarTopo
 
 from time import sleep, time
 from subprocess import Popen, PIPE
@@ -23,58 +25,91 @@ from util import tcp_utils
 
 
 # interface connecting the switch to the "server" node
-switch_server_iface = 's1-eth1'
+switch_server_iface = 's0-eth1'
 
 # save test results here
 results_dir = './results'
 
 
+# Enable DCTCP and ECN in the Linux Kernel
+def SetDCTCPState():
+    Popen("sysctl -w net.ipv4.tcp_dctcp_enable=1", shell=True).wait()
+    Popen("sysctl -w net.ipv4.tcp_ecn=1", shell=True).wait()
+
+
+# Disable DCTCP and ECN in the Linux Kernel
+def ResetDCTCPState():
+    Popen("sysctl -w net.ipv4.tcp_dctcp_enable=0", shell=True).wait()
+    Popen("sysctl -w net.ipv4.tcp_ecn=0", shell=True).wait()
+
+
 def dctcp_queue_test(use_dctcp, results_file):
     "Run DCTCP queue size tests"
 
-    tcp_utils.disable_dctcp()
-    if use_dctcp is True:
-        tcp_utils.enable_dctcp()
-    else:
-        tcp_utils.disable_dctcp()
+    os.system("sudo sysctl -w net.ipv4.tcp_congestion_control=reno")
 
-    topo = DCTCPTopo(use_dctcp=use_dctcp, max_q=466)
+    if use_dctcp is True:
+        SetDCTCPState()
+    else:
+        ResetDCTCPState()
+
+    red_params = {
+        'limit': 1000000,
+        'min': 30000,
+        'max': 30001,
+        'avpkt': 1500,
+        'burst': 20,
+        'prob': 1
+    }
+
+    # topo = DCTCPTopo(use_dctcp=use_dctcp, max_q=1000, delay='1ms')
+    topo = StarTopo(
+        n=3,
+        bw_host=100,
+        delay='1ms',
+        bw_net=100,
+        maxq=400,
+        enable_dctcp=use_dctcp,
+        enable_red=use_dctcp,
+        red_params=red_params,
+        show_mininet_commands=0)
+
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
 
     net.start()
 
-    switch = net.getNodeByName('s1')
+    dumpNodeConnections(net.hosts)
 
-    queue_monitor = Process(target=monitor_qlen, args=(
-        switch_server_iface, 0.01, '%s/%s' % (results_dir, results_file)))
-    queue_monitor.start()
+    switch = net.getNodeByName('s0')
 
-    server = net.get("host0")
-    client1, client2 = net.get("host1", "host2")
+    server = net.getNodeByName('h0')
+    client1, client2 = net.getNodeByName("h1", "h2")
 
     server_ip = server.IP()
-    test_time = 12
+    test_time = 5
 
-    print("Starting iperf server")
-    server.sendCmd('iperf -s')
-    print("Starting iperf client 1")
-    client1.sendCmd('iperf -c %s -t %d -i 1 > %s/iperf_client1.txt'
-                    % (server_ip, test_time, results_dir))
-    print("Starting iperf client 2")
-    client2.sendCmd('iperf -c %s -t %d -i 1 > %s/iperf_client2.txt'
-                    % (server_ip, test_time, results_dir))
+    h0 = net.getNodeByName('h0')
+    print "Starting iperf server..."
+    server = h0.popen("iperf -s -w 16m")
 
-    print("Waiting for hosts to finish...")
+    h0 = net.getNodeByName('h0')
+    for i in range(2):
+        print "Starting iperf client..."
+        hn = net.getNodeByName('h%d' % (i+1))
+        client = hn.popen("iperf -c " + h0.IP() + " -t 100")
 
-    client1.waitOutput()
-    client2.waitOutput()
-    server.sendInt()
-    server.waitOutput()
+    print("Waiting for TCP flows to stabilize")
+    sleep(3)
 
-    print server.cmd("sysctl -a | grep dctcp")
-
+    print("Starting test...")
+    queue_monitor = Process(target=monitor_qlen, args=(
+        switch_server_iface, 0.5, '%s/%s' % (results_dir, results_file)))
+    queue_monitor.start()
+    sleep(test_time)
     queue_monitor.terminate()
+
+    print("Test complete, waiting for hosts to finish...")
 
     net.stop()
 
@@ -85,4 +120,4 @@ if __name__ == '__main__':
     dctcp_queue_test(use_dctcp=False, results_file="reno_queue.csv")
     dctcp_queue_test(use_dctcp=True, results_file="dctcp_queue.csv")
 
-    tcp_utils.disable_dctcp()
+    print("Done!")
