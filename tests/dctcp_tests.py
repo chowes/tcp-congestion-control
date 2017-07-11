@@ -25,54 +25,35 @@ from util import tcp_utils
 
 
 # interface connecting the switch to the "server" node
-switch_server_iface = 's0-eth1'
+switch_server_iface = 's1-eth1'
 
 # save test results here
 results_dir = './results'
 
+# configuring RED is kind of complicated, but we can set our own value for k
+# by setting min = k * avpacket and max = min + 1 with probability 1
+#
+# this configuration is from <link 2013 DCTCP project>
+red_params = {
+    'limit': 1000000,
+    'min': 30000,
+    'max': 30001,
+    'avpkt': 1500,
+    'burst': 20,
+    'prob': 1
+}
 
-# Enable DCTCP and ECN in the Linux Kernel
-def SetDCTCPState():
-    Popen("sysctl -w net.ipv4.tcp_dctcp_enable=1", shell=True).wait()
-    Popen("sysctl -w net.ipv4.tcp_ecn=1", shell=True).wait()
 
-
-# Disable DCTCP and ECN in the Linux Kernel
-def ResetDCTCPState():
-    Popen("sysctl -w net.ipv4.tcp_dctcp_enable=0", shell=True).wait()
-    Popen("sysctl -w net.ipv4.tcp_ecn=0", shell=True).wait()
-
-
-def dctcp_queue_test(use_dctcp, results_file):
+def dctcp_queue_test(use_dctcp, results_file, n_hosts=3):
     "Run DCTCP queue size tests"
 
-    os.system("sudo sysctl -w net.ipv4.tcp_congestion_control=reno")
-
     if use_dctcp is True:
-        SetDCTCPState()
+        tcp_utils.enable_dctcp()
     else:
-        ResetDCTCPState()
+        tcp_utils.disable_dctcp()
 
-    red_params = {
-        'limit': 1000000,
-        'min': 30000,
-        'max': 30001,
-        'avpkt': 1500,
-        'burst': 20,
-        'prob': 1
-    }
-
-    # topo = DCTCPTopo(use_dctcp=use_dctcp, max_q=1000, delay='1ms')
-    topo = StarTopo(
-        n=3,
-        bw_host=100,
-        delay='1ms',
-        bw_net=100,
-        maxq=400,
-        enable_dctcp=use_dctcp,
-        enable_red=use_dctcp,
-        red_params=red_params,
-        show_mininet_commands=0)
+    topo = DCTCPTopo(
+        bw=100, max_q=300, n=n_hosts, delay='1ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -81,35 +62,34 @@ def dctcp_queue_test(use_dctcp, results_file):
 
     dumpNodeConnections(net.hosts)
 
-    switch = net.getNodeByName('s0')
+    switch = net.getNodeByName('s1')
 
-    server = net.getNodeByName('h0')
-    client1, client2 = net.getNodeByName("h1", "h2")
+    server = net.getNodeByName('h1')
+    client1, client2 = net.getNodeByName("h2", "h3")
 
     server_ip = server.IP()
-    test_time = 5
+    test_time = 10
 
-    h0 = net.getNodeByName('h0')
-    print "Starting iperf server..."
-    server = h0.popen("iperf -s -w 16m")
+    print("Starting iperf server...")
+    server.popen("iperf -s -w 16m")
 
-    h0 = net.getNodeByName('h0')
-    for i in range(2):
+    h1 = net.getNodeByName('h1')
+    for i in range(1, n_hosts):
         print "Starting iperf client..."
-        hn = net.getNodeByName('h%d' % (i+1))
-        client = hn.popen("iperf -c " + h0.IP() + " -t 100")
+        client = net.getNodeByName('h%d' % (i+1))
+        client.popen("iperf -c %s -t 100" % server_ip)
 
-    print("Waiting for TCP flows to stabilize")
-    sleep(3)
+    print("Waiting for TCP flows to reach steady state")
+    sleep(5)
 
-    print("Starting test...")
+    print("Starting queueing test... run time: %d seconds" % test_time)
     queue_monitor = Process(target=monitor_qlen, args=(
-        switch_server_iface, 0.5, '%s/%s' % (results_dir, results_file)))
+        switch_server_iface, 0.1, '%s/%s' % (results_dir, results_file)))
     queue_monitor.start()
     sleep(test_time)
     queue_monitor.terminate()
 
-    print("Test complete, waiting for hosts to finish...")
+    # need to stop hosts...
 
     net.stop()
 
