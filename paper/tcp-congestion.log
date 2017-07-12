@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  17 JUN 2017 01:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  10 JUL 2017 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -698,42 +698,13 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) (./tcp-body.tex
 
-Package natbib Warning: Citation `costan_intel_2016' on page 1 undefined on inp
-ut line 3.
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 15.
 
+) (./tcp-congestion.bbl
+Underfull \vbox (badness 3713) has occurred while \output is active []
 
-Package natbib Warning: Citation `costan_intel_2016' on page 1 undefined on inp
-ut line 5.
-
-
-Package natbib Warning: Citation `costan_intel_2016' on page 1 undefined on inp
-ut line 11.
-
-
-Package natbib Warning: Citation `gotzfried_cache_2017' on page 1 undefined on 
-input line 11.
-
-
-Package natbib Warning: Citation `schwarz_malware_2017' on page 1 undefined on 
-input line 11.
-
-
-Package natbib Warning: Citation `xu_controlled-channel_2015' on page 1 undefin
-ed on input line 11.
-
-
-Package natbib Warning: Citation `shinde_preventing_2015' on page 1 undefined o
-n input line 11.
-
-
-Underfull \vbox (badness 2126) has occurred while \output is active []
-
-)
-(./tcp-congestion.bbl)
-
-Package natbib Warning: There were undefined citations.
-
-[1.1{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}
+) [1.1{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 44.
@@ -743,30 +714,30 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 44.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 44.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 44.
 Package rerunfilecheck Info: File `tcp-congestion.out' has not changed.
-(rerunfilecheck)             Checksum: 2DF69BA2BC53D34DDE16035F65AEFE0B;1080.
+(rerunfilecheck)             Checksum: 444CE7DD674F8D2CB6C9CD2D99ABA738;1136.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 44.
  ) 
 Here is how much of TeX's memory you used:
- 15009 strings out of 494946
- 218005 string characters out of 6180982
- 353787 words of memory out of 5000000
- 17895 multiletter control sequences out of 15000+600000
- 10045 words of font info for 55 fonts, out of 8000000 for 9000
+ 15015 strings out of 494946
+ 218114 string characters out of 6180982
+ 354804 words of memory out of 5000000
+ 17897 multiletter control sequences out of 15000+600000
+ 10658 words of font info for 55 fonts, out of 8000000 for 9000
  175 hyphenation exceptions out of 8191
- 60i,11n,94p,833b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,695b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmti9.pfb>
-Output written on tcp-congestion.pdf (1 page, 118199 bytes).
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmssi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmti9.pfb>
+Output written on tcp-congestion.pdf (1 page, 119659 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 13381 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 104 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 17485 words of extra memory for PDF output out of 20736 (max. 10000000)
 
