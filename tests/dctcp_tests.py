@@ -12,7 +12,6 @@ from mininet.util import dumpNodeConnections
 from mininet.cli import CLI
 
 from dctcp_topo import DCTCPTopo
-from startopo import StarTopo
 
 from time import sleep, time
 from subprocess import Popen, PIPE
@@ -56,7 +55,7 @@ def dctcp_queue_test(use_dctcp, results_file, num_hosts=3, time=10):
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=100, max_q=200, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
+        bw=1000, max_q=200, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -95,10 +94,10 @@ def dctcp_queue_test(use_dctcp, results_file, num_hosts=3, time=10):
 if __name__ == '__main__':
     setLogLevel('info')
 
-    dctcp_queue_test(use_dctcp=False, num_hosts=8,
+    dctcp_queue_test(use_dctcp=False, num_hosts=3,
                      results_file="reno_queue.csv")
 
-    dctcp_queue_test(use_dctcp=True, num_hosts=8,
+    dctcp_queue_test(use_dctcp=True, num_hosts=3,
                      results_file="dctcp_queue.csv")
 
     tcp_utils.reset_tcp()
