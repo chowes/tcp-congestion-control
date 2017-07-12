@@ -25,10 +25,13 @@ from util import tcp_utils
 
 
 # interface connecting the switch to the "server" node
-switch_server_iface = 's1-eth1'
+SWITCH_SERVER_IFACE = 's1-eth1'
 
 # save test results here
-results_dir = './results'
+RESULTS_DIR = './results'
+
+# time to wait for flows to stabilize
+TCP_STABILIZATION_TIME = 10
 
 # configuring RED is kind of complicated, but we can set our own value for k
 # by setting min = k * avpacket and max = min + 1 with probability 1
@@ -44,7 +47,7 @@ red_params = {
 }
 
 
-def dctcp_queue_test(use_dctcp, results_file, n_hosts=3):
+def dctcp_queue_test(use_dctcp, results_file, num_hosts=3, time=10):
     "Run DCTCP queue size tests"
 
     if use_dctcp is True:
@@ -53,7 +56,7 @@ def dctcp_queue_test(use_dctcp, results_file, n_hosts=3):
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=100, max_q=300, n=n_hosts, delay='1ms', use_dctcp=use_dctcp)
+        bw=100, max_q=200, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -63,33 +66,28 @@ def dctcp_queue_test(use_dctcp, results_file, n_hosts=3):
     dumpNodeConnections(net.hosts)
 
     switch = net.getNodeByName('s1')
-
-    server = net.getNodeByName('h1')
-    client1, client2 = net.getNodeByName("h2", "h3")
-
-    server_ip = server.IP()
-    test_time = 10
+    receiver = net.getNodeByName('h1')
+    senders = []
+    for s in range(1, num_hosts):
+        senders.append(net.getNodeByName('h%s' % (s + 1)))
 
     print("Starting iperf server...")
-    server.popen("iperf -s -w 16m")
+    receiver.popen("iperf -s -w 64m")
 
-    h1 = net.getNodeByName('h1')
-    for i in range(1, n_hosts):
-        print "Starting iperf client..."
-        client = net.getNodeByName('h%d' % (i+1))
-        client.popen("iperf -c %s -t 100" % server_ip)
+    print("Starting iperf clients...")
+    for s in senders:
+        print("%s sending to %s" % (s.IP(), receiver.IP()))
+        s.popen("iperf -c %s -t %d" % (receiver.IP(), (time + 30)))
 
     print("Waiting for TCP flows to reach steady state")
-    sleep(5)
+    sleep(TCP_STABILIZATION_TIME)
 
-    print("Starting queueing test... run time: %d seconds" % test_time)
+    print("Starting queueing test... run time: %d seconds" % time)
     queue_monitor = Process(target=monitor_qlen, args=(
-        switch_server_iface, 0.1, '%s/%s' % (results_dir, results_file)))
+        SWITCH_SERVER_IFACE, 0.01, '%s/%s' % (RESULTS_DIR, results_file)))
     queue_monitor.start()
-    sleep(test_time)
+    sleep(time)
     queue_monitor.terminate()
-
-    # need to stop hosts...
 
     net.stop()
 
@@ -97,7 +95,12 @@ def dctcp_queue_test(use_dctcp, results_file, n_hosts=3):
 if __name__ == '__main__':
     setLogLevel('info')
 
-    dctcp_queue_test(use_dctcp=False, results_file="reno_queue.csv")
-    dctcp_queue_test(use_dctcp=True, results_file="dctcp_queue.csv")
+    dctcp_queue_test(use_dctcp=False, num_hosts=8,
+                     results_file="reno_queue.csv")
+
+    dctcp_queue_test(use_dctcp=True, num_hosts=8,
+                     results_file="dctcp_queue.csv")
+
+    tcp_utils.reset_tcp()
 
     print("Done!")

@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Compiled python modules
+*.pyc
+
+# Results files
+*.csv

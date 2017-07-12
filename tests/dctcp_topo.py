@@ -55,10 +55,11 @@ class DCTCPTopo(Topo):
             'red_params': red_params if use_dctcp is True else None
         }
 
-        switch = self.addSwitch('s1')
-
-        for h in range(n):
-            host = self.addHost('h%s' % (h + 1))
+        self.switch = self.addSwitch('s1')
+        self.receiver = self.addHost('h1')
+        self.senders = []
+        for h in range(1, n):
+            self.senders.append(self.addHost('h%s' % (h + 1)))
 
         # set h1 as our receiver and add a connection to the switch this is our
         # "bottleneck" where we will expect queues to build up
