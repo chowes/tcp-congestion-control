@@ -32,22 +32,9 @@ RESULTS_DIR = '/home/ubuntu/tcp-congestion-control/tests/results'
 # time to wait for flows to stabilize
 TCP_STABILIZATION_TIME = 10
 
-# configuring RED is kind of complicated, but we can set our own value for k
-# by setting min = k * avpacket and max = min + 1 with probability 1
-#
-# this configuration is from <link 2013 DCTCP project>
-red_params = {
-    'limit': 1000000,
-    'min': 30000,
-    'max': 30001,
-    'avpkt': 1500,
-    'burst': 20,
-    'prob': 1
-}
-
 
 def dctcp_queue_test(use_dctcp, queue_results_file, throughout_results_file,
-                     bw=100, num_flows=2, time=10):
+                     k=20, bw=100, num_flows=2, time=10):
     "Run DCTCP queue size and throughput tests"
 
     num_hosts = num_flows + 1
@@ -58,7 +45,7 @@ def dctcp_queue_test(use_dctcp, queue_results_file, throughout_results_file,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=200, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=200, k=20, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -129,12 +116,20 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5,
 
     print("Starting iperf clients...")
     # need to fix this...
+    i = num_flows
     for s in senders:
-        print("%s sending to %s" % (s.name, receiver.name))
-        s.popen("iperf -c %s -w 32m -t %d -i %d > %s/%s-%s &" %
-                (receiver.IP(), interval_time, interval_time,
-                 RESULTS_DIR, s.name, results_file), shell=True)
+        run_time = (i * 2 - 1) * interval_time
+        print("%s sending to %s - run time: %d" %
+              (s.name, receiver.name, run_time))
+        s.popen("iperf -c %s -w 32m -t %d -i 5 > %s/%s-%s &" %
+                (receiver.IP(), run_time, RESULTS_DIR, s.name, results_file),
+                shell=True)
         sleep(interval_time)
+        i -= 1
+
+    wait_time = (num_flows - 1) * interval_time
+    print("waiting %d seconds", wait_time)
+    sleep(wait_time)
 
     net.stop()
 
