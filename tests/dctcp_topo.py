@@ -5,7 +5,7 @@ from mininet.link import TCLink, TCIntf, Link
 
 
 # red calibration from:
-# <add link to 2013 DCTCP stanford project>
+# https://reproducingnetworkresearch.wordpress.com/2013/03/13/cs244-13-dctcp/
 #
 # getting DCTCP marking using RED parameters is not intuitive...
 # we take min = (K x avgpkt) and max = (min + 1)
