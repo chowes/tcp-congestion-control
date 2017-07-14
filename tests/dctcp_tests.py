@@ -177,15 +177,15 @@ if __name__ == '__main__':
     dctcp_convergence_test(
         use_dctcp=True,
         results_file="convergence-test.txt",
-        bw=100,
+        bw=1000,
         num_flows=5,
         interval_time=5)
 
     for i in range(100):
         dctcp_queue_test(
              use_dctcp=True,
-             queue_results_file="dctcp_k_queue.csv",
-             throughout_results_file="dctcp_k_queue.csv",
+             queue_results_file="dctcp_k_queue-%d.csv" % (i + 1),
+             throughout_results_file="dctcp_k_queue.csv-%d.csv" % (i + 1),
              bw=1000,
              k=i+1,
              num_flows=2,
