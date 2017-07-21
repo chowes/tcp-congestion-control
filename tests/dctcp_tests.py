@@ -175,7 +175,7 @@ if __name__ == '__main__':
         throughput_file=throughput_file,
         bw=100,
         num_flows=2,
-        time=30)
+        time=60)
 
     print "queue test: dctcp - 2 flows"
     dctcp_queue_test(
@@ -185,7 +185,7 @@ if __name__ == '__main__':
         throughput_file=throughput_file,
         bw=100,
         num_flows=2,
-        time=30)
+        time=60)
 
 # test queue size with twenty flows over a shared bottleneck
     print "queue test: tcp reno - 20 flows"
@@ -195,8 +195,8 @@ if __name__ == '__main__':
         queue_file=queue_file,
         throughput_file=throughput_file,
         bw=100,
-        num_flows=2,
-        time=30)
+        num_flows=20,
+        time=60)
 
     print "queue test: dctcp - 20 flows"
     dctcp_queue_test(
@@ -205,8 +205,8 @@ if __name__ == '__main__':
         queue_file=queue_file,
         throughput_file=throughput_file,
         bw=100,
-        num_flows=2,
-        time=30)
+        num_flows=20,
+        time=60)
 
     # dctcp_convergence_test(
     #     use_dctcp=True,
