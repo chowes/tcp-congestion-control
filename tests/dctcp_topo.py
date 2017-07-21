@@ -15,7 +15,7 @@ red_params = {
     'min': 30000,
     'max': 30001,
     'avpkt': 1500,
-    'burst': 20,
+    'burst': 100,
     'prob': 1
 }
 
@@ -23,7 +23,7 @@ red_params = {
 class DCTCPTopo(Topo):
     "Single switch topology for testing DCTCP queue length"
 
-    def __init__(self, n=3, bw=100, max_q=None, delay=None, cpu=None,
+    def __init__(self, n=3, bw=100, max_q=None, k=20, delay=None, cpu=None,
                  use_dctcp=False):
 
         super(DCTCPTopo, self).__init__()
@@ -45,6 +45,9 @@ class DCTCPTopo(Topo):
             'delay': 0,
             'max_queue_size': max_q
         }
+
+        red_params['min'] = k * red_params['avpkt']
+        red_params['max'] = red_params['min'] + 1
 
         switch_link_opts = {
             'bw': bw,
