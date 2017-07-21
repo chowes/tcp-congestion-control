@@ -148,40 +148,42 @@ if __name__ == '__main__':
     dctcp_queue_test(
         use_dctcp=False,
         testname="reno_2",
-        queue_file="queue_2.csv",
-        throughput_file="thru_2.csv",
+        queue_file="queue.csv",
+        throughput_file="thru.csv",
         bw=100,
         num_flows=2,
-        time=5)
+        time=30)
 
     print "queue test: dctcp - 2 flows"
     dctcp_queue_test(
         use_dctcp=True,
         testname="dctcp_2",
-        queue_file="queue_2.csv",
-        throughput_file="thru_2.csv",
+        queue_file="queue.csv",
+        throughput_file="thru.csv",
         bw=100,
         num_flows=2,
-        time=5)
+        time=30)
 
-    # # test queue size with twenty flows over a shared bottleneck
-    # print "queue test: tcp reno - 20 flows"
-    # dctcp_queue_test(
-    #     use_dctcp=False,
-    #     queue_results_file="reno_queue_20.csv",
-    #     throughout_results_file="reno_thru_20.csv",
-    #     bw=1000,
-    #     num_flows=20,
-    #     time=30)
+# test queue size with twenty flows over a shared bottleneck
+    print "queue test: tcp reno - 20 flows"
+    dctcp_queue_test(
+        use_dctcp=False,
+        testname="reno_20",
+        queue_file="queue.csv",
+        throughput_file="thru.csv",
+        bw=100,
+        num_flows=2,
+        time=30)
 
-    # print "queue test: dctcp - 20 flows"
-    # dctcp_queue_test(
-    #     use_dctcp=True,
-    #     queue_results_file="dctcp_queue_20.csv",
-    #     throughout_results_file="dctcp_thru_20.csv",
-    #     bw=1000,
-    #     num_flows=20,
-    #     time=30)
+    print "queue test: dctcp - 20 flows"
+    dctcp_queue_test(
+        use_dctcp=True,
+        testname="dctcp_20",
+        queue_file="queue.csv",
+        throughput_file="thru.csv",
+        bw=100,
+        num_flows=2,
+        time=30)
 
     # dctcp_convergence_test(
     #     use_dctcp=True,

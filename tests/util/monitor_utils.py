@@ -46,7 +46,6 @@ def monitor_throughput(iface, testname, filename, run_time=10):
         interface = line[0]
         if iface_pattern.match(interface) and len(line) > 9:
             start_bytes = int(line[9])
-            print line
 
     sleep(run_time)
 
@@ -57,7 +56,6 @@ def monitor_throughput(iface, testname, filename, run_time=10):
         interface = line[0]
         if iface_pattern.match(interface) and len(line) > 9:
             end_bytes = int(line[9])
-            print line
 
     # calculate throughout and convert to Mbits/second
     throughput = (8 * (end_bytes - start_bytes) / run_time) / 1e6
