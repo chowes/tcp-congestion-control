@@ -4,7 +4,9 @@ import re
 
 default_dir = '.'
 
-def monitor_qlen(iface, interval_sec = 0.01, fname='%s/qlen.txt' % default_dir):
+
+def monitor_qlen(iface, interval_sec=0.01, fname='%s/qlen.txt'
+                 % default_dir):
     pat_queued = re.compile(r'backlog\s[^\s]+\s([\d]+)p')
     cmd = "tc -s qdisc show dev %s" % (iface)
     ret = []
@@ -19,8 +21,42 @@ def monitor_qlen(iface, interval_sec = 0.01, fname='%s/qlen.txt' % default_dir):
             t = "%f" % time()
             open(fname, 'a').write(t + ',' + matches[1] + '\n')
         sleep(interval_sec)
-    #open('qlen.txt', 'w').write('\n'.join(ret))
+
     return
+
+
+def monitor_throughput(iface, time_secs=10, testname, filename):
+
+    """Aggregates (sums) all txed bytes and rate (in Mbps) from
+       devices whose name matches @dev_pattern and writes to @fname"""
+    iface_pattern = re.compile(iface)
+    spaces = re.compile('\s+')
+    open(fname, 'w').write('')
+
+    lines = open('/proc/net/dev').read().split('\n')
+    time = str(time())
+
+    for line in lines:
+        line = spaces.split(line.strip())
+        iface = line[0]
+        if pat.match(iface) and len(line) > 9:
+            start_bytes = int(line[9])
+
+    sleep(time_secs)
+
+    for line in lines:
+        line = spaces.split(line.strip())
+        iface = line[0]
+        if pat.match(iface) and len(line) > 9:
+            end_bytes = int(line[9])
+
+    throughput = (end_bytes - start_bytes) / 1e6
+
+    with open(fname, a) as outfile:
+        outfile.write("%s,%s,%d" % (testname, iface, throughput))
+
+    return
+
 
 def monitor_count(ipt_args="--src 10.0.0.0/8",
                   interval_sec=0.01, fname='%s/bytes_sent.txt'
@@ -62,7 +98,7 @@ def monitor_devs(dev_pattern='^s', fname="%s/bytes_sent.txt" %
         for line in lines:
             line = spaces.split(line.strip())
             iface = line[0]
-            if pat.match(iface) and len(line) > 9:
+            if iface_pattern.match(iface) and len(line) > 9:
                 tx_bytes = int(line[9])
                 total += tx_bytes - prev_tx.get(iface, tx_bytes)
                 prev_tx[iface] = tx_bytes
