@@ -1,18 +1,18 @@
-\section{TCP Congestion Control}
+\section{Background}
 
-% why is this an issue?
+Modern distributed cloud applications rely heavily on the \emph{partition/aggregate} design pattern, in which an application is broken in into hierarchical layers and time-sensitive requests at higher layers are divided and delegated to workers in the lower layers. Workers perform some component of a task and return a result to an aggregator, which is combined with results from other workers and passed back up through the hierarchy. A problem arises when workers simultaneously report results back to an aggregator, since this traffic must pass through a shared bottleneck, which results in high queueing delays for time-sensitive traffic. 
+
+% why is this an issue? Discuss incast, partition/aggregate pattern, traffic characterization
 
 \section{Data Center TCP}
-
-Modern distributed cloud applications rely heavily on the \emph{partition/aggregate} design pattern, in which an application is broken in into hierarchical layers and time-sensitive requests at higher layers are divided and delegated to workers in the lower layers. Workers perform some component of a task and return a result to an aggregator, which is combined with results from other workers and passed back up through the hierarchy. 
 
 Data center TCP (DCTCP) attempts to address the problem of latency in partition/aggregate traffic by reducing queue length without affecting throughput for large TCP flows.
 
 \subsection{Reproducing DCTCP Results}
 
-\subsubsection{Method}
+\subsubsection{Methods}
 
-DCTCP results were reproduced using the Mininet network emulator running on Ubuntu 12.04 with the DCTCP kernel patch.
+Selected results from \cite{alizadeh_data_2010} were reproduced using the Mininet network emulator running on Ubuntu 12.04 with a version of the 3.18 Linux kernel patched to add in support for DCTCP. 
 
 \subsubsection{Results}
 
