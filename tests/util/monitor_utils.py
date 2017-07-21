@@ -1,3 +1,5 @@
+#!/bin/bash
+
 from time import sleep, time
 from subprocess import *
 import re
@@ -5,7 +7,9 @@ import re
 
 def monitor_qlen(iface, testname, filename, run_time=10, interval=0.1):
 
-    """ Monitor the queue length of the given interface.
+    """ Monitor the queue length of the given interface and appends results
+        to a .csv file.
+
         Modified from Mininet util function 'monitor_qlen':
         https://github.com/mininet/mininet-util/blob/master/monitor.py """
 
@@ -32,9 +36,7 @@ def monitor_qlen(iface, testname, filename, run_time=10, interval=0.1):
 def monitor_throughput(iface, testname, filename, run_time=10):
 
     """ Measures the throughput of the specified interace over a given
-        interval.
-        Modified from Mininet util function 'monitor_devs':
-        https://github.com/mininet/mininet-util/blob/master/monitor.py"""
+        interval and appends results to a .csv file """
 
     iface_pattern = re.compile(iface)
     spaces = re.compile('\s+')

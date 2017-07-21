@@ -143,13 +143,36 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5,
 if __name__ == '__main__':
     setLogLevel('info')
 
+    queue_file = "queue.csv"
+    throughput_file = "thru.csv"
+
+    # delete old results files if they exist
+    try:
+        os.remove('%s/%s' % (RESULTS_DIR, queue_file))
+    except OSError:
+        pass
+
+    try:
+        os.remove('%s/%s' % (RESULTS_DIR, throughput_file))
+    except OSError:
+        pass
+
+    # setup csv headers
+    with open('%s/%s' % (RESULTS_DIR, queue_file), 'w') as new_queue_file:
+        new_queue_file.write("%s,%s,%s,%s\n"
+                             % ('cong_ctl', 'iface', 'time', 'q_len'))
+
+    with open('%s/%s' % (RESULTS_DIR, throughput_file), 'w') as new_thru_file:
+        new_thru_file.write("%s,%s,%s\n"
+                            % ('cong_ctl', 'iface', 'thru'))
+
     # test queue size with two flows over a shared bottleneck
     print "queue test: tcp reno - 2 flows"
     dctcp_queue_test(
         use_dctcp=False,
         testname="reno_2",
-        queue_file="queue.csv",
-        throughput_file="thru.csv",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
         bw=100,
         num_flows=2,
         time=30)
@@ -158,8 +181,8 @@ if __name__ == '__main__':
     dctcp_queue_test(
         use_dctcp=True,
         testname="dctcp_2",
-        queue_file="queue.csv",
-        throughput_file="thru.csv",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
         bw=100,
         num_flows=2,
         time=30)
@@ -169,8 +192,8 @@ if __name__ == '__main__':
     dctcp_queue_test(
         use_dctcp=False,
         testname="reno_20",
-        queue_file="queue.csv",
-        throughput_file="thru.csv",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
         bw=100,
         num_flows=2,
         time=30)
@@ -179,8 +202,8 @@ if __name__ == '__main__':
     dctcp_queue_test(
         use_dctcp=True,
         testname="dctcp_20",
-        queue_file="queue.csv",
-        throughput_file="thru.csv",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
         bw=100,
         num_flows=2,
         time=30)

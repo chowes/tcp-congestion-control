@@ -1,4 +1,5 @@
-reno_2,s1-eth1,98.887871
-dctcp_2,s1-eth1,98.026475
-reno_20,s1-eth1,98.637593
-dctcp_20,s1-eth1,98.015956
+cong_ctl,iface,thru
+reno_2,s1-eth1,98.956065
+dctcp_2,s1-eth1,97.85933
+reno_20,s1-eth1,98.837609
+dctcp_20,s1-eth1,98.018804
