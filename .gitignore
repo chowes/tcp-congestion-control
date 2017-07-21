@@ -35,4 +35,4 @@
 *.pyc
 
 # Results files
-*.csv
+tests/temp_results/*
