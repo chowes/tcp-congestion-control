@@ -143,8 +143,13 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5,
 if __name__ == '__main__':
     setLogLevel('info')
 
+    # results files for throughput and queue length tests
     queue_file = "queue.csv"
     throughput_file = "thru.csv"
+
+    # results files for testing for ideal k value
+    queue_k_file = "dctcp_k_queue.csv"
+    throughput_k_file = "dctcp_k_thru.csv"
 
     # delete old results files if they exist
     try:
@@ -157,14 +162,32 @@ if __name__ == '__main__':
     except OSError:
         pass
 
-    # setup csv headers
-    with open('%s/%s' % (RESULTS_DIR, queue_file), 'w') as new_queue_file:
-        new_queue_file.write("%s,%s,%s,%s\n"
-                             % ('cong_ctl', 'iface', 'time', 'q_len'))
+    try:
+        os.remove('%s/%s' % (RESULTS_DIR, queue_k_file))
+    except OSError:
+        pass
 
-    with open('%s/%s' % (RESULTS_DIR, throughput_file), 'w') as new_thru_file:
-        new_thru_file.write("%s,%s,%s\n"
-                            % ('cong_ctl', 'iface', 'thru'))
+    try:
+        os.remove('%s/%s' % (RESULTS_DIR, throughput_k_file))
+    except OSError:
+        pass
+
+    # setup csv headers
+    with open('%s/%s' % (RESULTS_DIR, queue_file), 'w') as new_file:
+        new_file.write("%s,%s,%s,%s\n"
+                       % ('cong_ctl', 'iface', 'time', 'q_len'))
+
+    with open('%s/%s' % (RESULTS_DIR, throughput_file), 'w') as new_file:
+        new_file.write("%s,%s,%s\n"
+                       % ('cong_ctl', 'iface', 'thru'))
+
+    with open('%s/%s' % (RESULTS_DIR, queue_k_file), 'w') as new_file:
+        new_file.write("%s,%s,%s,%s\n"
+                       % ('k', 'iface', 'time', 'q_len'))
+
+    with open('%s/%s' % (RESULTS_DIR, throughput_k_file), 'w') as new_file:
+        new_file.write("%s,%s,%s\n"
+                       % ('k', 'iface', 'thru'))
 
     # test queue size with two flows over a shared bottleneck
     print "queue test: tcp reno - 2 flows"
@@ -215,15 +238,16 @@ if __name__ == '__main__':
     #     num_flows=5,
     #     interval_time=5)
 
-    # for i in range(100):
-    #     dctcp_queue_test(
-    #          use_dctcp=True,
-    #          queue_results_file="dctcp_k_queue-%0*d.csv" % (3, i + 1),
-    #          throughout_results_file="dctcp_k_queue.csv-%0*d.csv"%(3, i + 1),
-    #          bw=1000,
-    #          k=i+1,
-    #          num_flows=2,
-    #          time=5)
+    for i in range(100):
+        dctcp_queue_test(
+             use_dctcp=True,
+             testname=i+1,
+             queue_file=queue_k_file,
+             throughput_file=throughput_k_file,
+             bw=100,
+             k=i+1,
+             num_flows=2,
+             time=60)
 
     tcp_utils.reset_tcp()
 
