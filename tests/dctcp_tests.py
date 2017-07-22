@@ -209,47 +209,47 @@ if __name__ == '__main__':
         new_file.write("%s,%s,%s\n"
                        % ('k', 'iface', 'thru'))
 
-#     # test queue size with two flows over a shared bottleneck
-#     print "queue test: tcp reno - 2 flows"
-#     dctcp_queue_test(
-#         use_dctcp=False,
-#         testname="reno_2",
-#         queue_file=queue_file,
-#         throughput_file=throughput_file,
-#         bw=100,
-#         num_flows=2,
-#         time=60)
+    # test queue size with two flows over a shared bottleneck
+    print "queue test: tcp reno - 2 flows"
+    dctcp_queue_test(
+        use_dctcp=False,
+        testname="reno_2",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
+        bw=100,
+        num_flows=2,
+        time=60)
 
-#     print "queue test: dctcp - 2 flows"
-#     dctcp_queue_test(
-#         use_dctcp=True,
-#         testname="dctcp_2",
-#         queue_file=queue_file,
-#         throughput_file=throughput_file,
-#         bw=100,
-#         num_flows=2,
-#         time=60)
+    print "queue test: dctcp - 2 flows"
+    dctcp_queue_test(
+        use_dctcp=True,
+        testname="dctcp_2",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
+        bw=100,
+        num_flows=2,
+        time=60)
 
-# # test queue size with twenty flows over a shared bottleneck
-#     print "queue test: tcp reno - 20 flows"
-#     dctcp_queue_test(
-#         use_dctcp=False,
-#         testname="reno_20",
-#         queue_file=queue_file,
-#         throughput_file=throughput_file,
-#         bw=100,
-#         num_flows=20,
-#         time=60)
+# test queue size with twenty flows over a shared bottleneck
+    print "queue test: tcp reno - 20 flows"
+    dctcp_queue_test(
+        use_dctcp=False,
+        testname="reno_20",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
+        bw=100,
+        num_flows=20,
+        time=60)
 
-#     print "queue test: dctcp - 20 flows"
-#     dctcp_queue_test(
-#         use_dctcp=True,
-#         testname="dctcp_20",
-#         queue_file=queue_file,
-#         throughput_file=throughput_file,
-#         bw=100,
-#         num_flows=20,
-#         time=60)
+    print "queue test: dctcp - 20 flows"
+    dctcp_queue_test(
+        use_dctcp=True,
+        testname="dctcp_20",
+        queue_file=queue_file,
+        throughput_file=throughput_file,
+        bw=100,
+        num_flows=20,
+        time=60)
 
     print "dctcp convergence test - 5 flows"
     dctcp_convergence_test(
@@ -269,17 +269,18 @@ if __name__ == '__main__':
         num_flows=5,
         interval_time=60)
 
-    # for i in range(1, 100):
-    #     print "Testing throughput - K = %s" % (i + 1)
-    #     dctcp_queue_test(
-    #          use_dctcp=True,
-    #          testname=i + 1,
-    #          queue_file=queue_k_file,
-    #          throughput_file=throughput_k_file,
-    #          bw=100,
-    #          k=i + 1,
-    #          num_flows=2,
-    #          time=30)
+    print "dctcp - test for ideal K"
+    for i in range(1, 60):
+        print "Testing throughput - K = %s" % (i + 1)
+        dctcp_queue_test(
+             use_dctcp=True,
+             testname=i + 1,
+             queue_file=queue_k_file,
+             throughput_file=throughput_k_file,
+             bw=100,
+             k=i + 1,
+             num_flows=2,
+             time=30)
 
     tcp_utils.reset_tcp()
 
