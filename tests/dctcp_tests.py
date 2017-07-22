@@ -2,6 +2,7 @@
 
 import sys
 import os
+import re
 
 from mininet.net import Mininet
 from mininet.node import CPULimitedHost
@@ -20,6 +21,7 @@ from multiprocessing import Process
 # queue length monitoring tools from:
 # https://github.com/mininet/mininet-util
 from util.monitor_utils import monitor_qlen, monitor_throughput
+from util.parse_utils import parse_iperf
 from util import tcp_utils
 
 
@@ -105,7 +107,7 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5, k=20,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=200, n=num_hosts, delay='1ms', k=k, use_dctcp=use_dctcp)
+        bw=bw, max_q=200, n=num_hosts, delay='1ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -117,11 +119,13 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5, k=20,
     switch = net.getNodeByName('s1')
     receiver = net.getNodeByName('h1')
     senders = []
+    sender_list = []
     for s in range(1, num_hosts):
         senders.append(net.getNodeByName('h%s' % (s + 1)))
+        sender_list.append('h%s' % (s + 1))
 
     print("Starting iperf server...")
-    receiver.popen("iperf -s -w 32m -i 1", shell=True)
+    receiver.popen("iperf -s", shell=True)
 
     print("Starting iperf clients...")
     i = num_flows
@@ -129,17 +133,19 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5, k=20,
         run_time = (i * 2 - 1) * interval_time
         print("%s sending to %s - run time: %d" %
               (s.name, receiver.name, run_time))
-        s.popen("iperf -c %s -w 32m -t %d -i 0.1 > %s/%s-%s &" %
-                (receiver.IP(), run_time, RESULTS_DIR, s.name, results_file),
+        s.popen("iperf -c %s -t %d -i 1 > %s/%s-converg.txt &" %
+                (receiver.IP(), run_time, RESULTS_DIR, s.name),
                 shell=True)
         sleep(interval_time)
         i -= 1
 
     wait_time = (num_flows - 1) * interval_time
-    print("waiting %d seconds", wait_time)
+    print "waiting %d seconds" % wait_time
     sleep(wait_time)
 
     net.stop()
+
+    parse_iperf_files(sender_list, interval_time, results_file)
 
 
 if __name__ == '__main__':
@@ -191,66 +197,75 @@ if __name__ == '__main__':
         new_file.write("%s,%s,%s\n"
                        % ('k', 'iface', 'thru'))
 
-    # test queue size with two flows over a shared bottleneck
-    print "queue test: tcp reno - 2 flows"
-    dctcp_queue_test(
-        use_dctcp=False,
-        testname="reno_2",
-        queue_file=queue_file,
-        throughput_file=throughput_file,
-        bw=100,
-        num_flows=2,
-        time=60)
+#     # test queue size with two flows over a shared bottleneck
+#     print "queue test: tcp reno - 2 flows"
+#     dctcp_queue_test(
+#         use_dctcp=False,
+#         testname="reno_2",
+#         queue_file=queue_file,
+#         throughput_file=throughput_file,
+#         bw=100,
+#         num_flows=2,
+#         time=60)
 
-    print "queue test: dctcp - 2 flows"
-    dctcp_queue_test(
+#     print "queue test: dctcp - 2 flows"
+#     dctcp_queue_test(
+#         use_dctcp=True,
+#         testname="dctcp_2",
+#         queue_file=queue_file,
+#         throughput_file=throughput_file,
+#         bw=100,
+#         num_flows=2,
+#         time=60)
+
+# # test queue size with twenty flows over a shared bottleneck
+#     print "queue test: tcp reno - 20 flows"
+#     dctcp_queue_test(
+#         use_dctcp=False,
+#         testname="reno_20",
+#         queue_file=queue_file,
+#         throughput_file=throughput_file,
+#         bw=100,
+#         num_flows=20,
+#         time=60)
+
+#     print "queue test: dctcp - 20 flows"
+#     dctcp_queue_test(
+#         use_dctcp=True,
+#         testname="dctcp_20",
+#         queue_file=queue_file,
+#         throughput_file=throughput_file,
+#         bw=100,
+#         num_flows=20,
+#         time=60)
+
+    print "dctcp convergence test - 5 flows"
+    dctcp_convergence_test(
         use_dctcp=True,
-        testname="dctcp_2",
-        queue_file=queue_file,
-        throughput_file=throughput_file,
+        results_file="dctcp-converg.csv",
         bw=100,
-        num_flows=2,
-        time=60)
+        num_flows=5,
+        interval_time=5)
 
-# test queue size with twenty flows over a shared bottleneck
-    print "queue test: tcp reno - 20 flows"
-    dctcp_queue_test(
+    print "tcp convergence test - 5 flows"
+    dctcp_convergence_test(
         use_dctcp=False,
-        testname="reno_20",
-        queue_file=queue_file,
-        throughput_file=throughput_file,
+        results_file="reno-converg.csv",
         bw=100,
-        num_flows=20,
-        time=60)
+        num_flows=5,
+        interval_time=5)
 
-    print "queue test: dctcp - 20 flows"
-    dctcp_queue_test(
-        use_dctcp=True,
-        testname="dctcp_20",
-        queue_file=queue_file,
-        throughput_file=throughput_file,
-        bw=100,
-        num_flows=20,
-        time=60)
-
-    # dctcp_convergence_test(
-    #     use_dctcp=True,
-    #     results_file="convergence-test.txt",
-    #     bw=100,
-    #     num_flows=5,
-    #     interval_time=5)
-
-    for i in range(1, 100):
-        print "Testing throughput - K = %s" % (i + 1)
-        dctcp_queue_test(
-             use_dctcp=True,
-             testname=i + 1,
-             queue_file=queue_k_file,
-             throughput_file=throughput_k_file,
-             bw=100,
-             k=i + 1,
-             num_flows=2,
-             time=30)
+    # for i in range(1, 100):
+    #     print "Testing throughput - K = %s" % (i + 1)
+    #     dctcp_queue_test(
+    #          use_dctcp=True,
+    #          testname=i + 1,
+    #          queue_file=queue_k_file,
+    #          throughput_file=throughput_k_file,
+    #          bw=100,
+    #          k=i + 1,
+    #          num_flows=2,
+    #          time=30)
 
     tcp_utils.reset_tcp()
 
