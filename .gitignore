@@ -34,5 +34,5 @@
 # Compiled python modules
 *.pyc
 
-# Results files
-tests/temp_results/*
+# Temporary Results files
+tests/results/*.txt

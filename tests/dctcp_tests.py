@@ -47,8 +47,6 @@ def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
     else:
         tcp_utils.disable_dctcp()
 
-    print k
-
     topo = DCTCPTopo(
         bw=bw, max_q=400, k=k, n=num_hosts, delay='1ms', use_dctcp=use_dctcp)
 
