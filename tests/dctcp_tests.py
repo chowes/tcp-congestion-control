@@ -45,8 +45,10 @@ def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
     else:
         tcp_utils.disable_dctcp()
 
+    print k
+
     topo = DCTCPTopo(
-        bw=bw, max_q=400, k=20, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=400, k=k, n=num_hosts, delay='1ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -91,7 +93,7 @@ def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
     net.stop()
 
 
-def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5,
+def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5, k=20,
                            interval_time=30):
     "Run DCTCP convergence test"
 
@@ -103,7 +105,7 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=200, n=num_hosts, delay='.5ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=200, n=num_hosts, delay='1ms', k=k, use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -119,7 +121,7 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5,
         senders.append(net.getNodeByName('h%s' % (s + 1)))
 
     print("Starting iperf server...")
-    receiver.popen("iperf -s -w 32m -i 1 > test.txt &", shell=True)
+    receiver.popen("iperf -s -w 32m -i 1", shell=True)
 
     print("Starting iperf clients...")
     i = num_flows
@@ -231,24 +233,24 @@ if __name__ == '__main__':
         num_flows=20,
         time=60)
 
-    dctcp_convergence_test(
-        use_dctcp=True,
-        results_file="convergence-test.txt",
-        bw=1000,
-        num_flows=5,
-        interval_time=5)
+    # dctcp_convergence_test(
+    #     use_dctcp=True,
+    #     results_file="convergence-test.txt",
+    #     bw=100,
+    #     num_flows=5,
+    #     interval_time=5)
 
-    for i in range(20):
+    for i in range(1, 100):
         print "Testing throughput - K = %s" % (i + 1)
         dctcp_queue_test(
              use_dctcp=True,
-             testname=i+1,
+             testname=i + 1,
              queue_file=queue_k_file,
              throughput_file=throughput_k_file,
              bw=100,
-             k=i+1,
+             k=i + 1,
              num_flows=2,
-             time=5)
+             time=30)
 
     tcp_utils.reset_tcp()
 

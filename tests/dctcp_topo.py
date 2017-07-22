@@ -15,7 +15,7 @@ red_params = {
     'min': 30000,
     'max': 30001,
     'avpkt': 1500,
-    'burst': 20,
+    'burst': 100,
     'prob': 1
 }
 
@@ -48,6 +48,9 @@ class DCTCPTopo(Topo):
 
         red_params['min'] = k * red_params['avpkt']
         red_params['max'] = red_params['min'] + 1
+
+        print k
+        print red_params
 
         switch_link_opts = {
             'bw': bw,
