@@ -95,9 +95,10 @@ def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
     net.stop()
 
 
-def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5, k=20,
-                           interval_time=30):
-    "Run DCTCP convergence test"
+def dctcp_convergence_test(use_dctcp, testname, results_file, bw=100,
+                           num_flows=5, k=20, interval_time=30):
+
+    """Run DCTCP convergence test"""
 
     num_hosts = num_flows + 1
 
@@ -145,7 +146,8 @@ def dctcp_convergence_test(use_dctcp, results_file, bw=100, num_flows=5, k=20,
 
     net.stop()
 
-    parse_iperf_files(sender_list, interval_time, results_file)
+    parse_iperf(sender_list, interval_time, testname,
+                RESULTS_DIR, results_file)
 
 
 if __name__ == '__main__':
@@ -154,6 +156,9 @@ if __name__ == '__main__':
     # results files for throughput and queue length tests
     queue_file = "queue.csv"
     throughput_file = "thru.csv"
+
+    # results file for convergence tests
+    converg_file = "converg.csv"
 
     # results files for testing for ideal k value
     queue_k_file = "dctcp_k_queue.csv"
@@ -167,6 +172,11 @@ if __name__ == '__main__':
 
     try:
         os.remove('%s/%s' % (RESULTS_DIR, throughput_file))
+    except OSError:
+        pass
+
+    try:
+        os.remove('%s/%s' % (RESULTS_DIR, converg_file))
     except OSError:
         pass
 
@@ -188,6 +198,10 @@ if __name__ == '__main__':
     with open('%s/%s' % (RESULTS_DIR, throughput_file), 'w') as new_file:
         new_file.write("%s,%s,%s\n"
                        % ('cong_ctl', 'iface', 'thru'))
+
+    with open('%s/%s' % (RESULTS_DIR, converg_file), 'w') as new_file:
+        new_file.write("%s,%s,%s,%s\n"
+                       % ('sender', 'cong_ctl', 'time', 'thru'))
 
     with open('%s/%s' % (RESULTS_DIR, queue_k_file), 'w') as new_file:
         new_file.write("%s,%s,%s,%s\n"
@@ -242,18 +256,20 @@ if __name__ == '__main__':
     print "dctcp convergence test - 5 flows"
     dctcp_convergence_test(
         use_dctcp=True,
-        results_file="dctcp-converg.csv",
+        testname='dctcp',
+        results_file=converg_file,
         bw=100,
         num_flows=5,
-        interval_time=5)
+        interval_time=60)
 
     print "tcp convergence test - 5 flows"
     dctcp_convergence_test(
         use_dctcp=False,
-        results_file="reno-converg.csv",
+        testname='reno',
+        results_file=converg_file,
         bw=100,
         num_flows=5,
-        interval_time=5)
+        interval_time=60)
 
     # for i in range(1, 100):
     #     print "Testing throughput - K = %s" % (i + 1)

@@ -3,7 +3,7 @@ import os
 import re
 
 
-def parse_iperf(senders, interval_time, results_file):
+def parse_iperf(senders, interval_time, cong_ctl, results_dir, results_file):
 
     """ parse iperf output and save throughput results to file.
 
@@ -13,22 +13,12 @@ def parse_iperf(senders, interval_time, results_file):
     data = re.compile('Mbits')
     delim = re.compile('(\s|-)+')
 
-    # delete old results file if it exists
-    try:
-        os.remove('%s/%s' % (RESULTS_DIR, results_file))
-    except OSError:
-        pass
-
-    # setup csv header
-    with open('%s/%s' % (RESULTS_DIR, results_file), 'w') as file:
-        file.write("%s,%s,%s\n" % ('sender', 'time', 'thru'))
-
     start_time = 0
 
     for s in senders:
 
         lines = open('%s/%s-converg.txt'
-                     % (RESULTS_DIR, s)).read().split('\n')
+                     % (results_dir, s)).read().split('\n')
 
         # last line gives an average, which we aren't interested in
         lines = lines[:-2]
@@ -38,9 +28,7 @@ def parse_iperf(senders, interval_time, results_file):
                 line = delim.split(line.strip())
                 time = start_time + float(line[6])
                 thru = line[14]
-                with open('%s/%s' % (RESULTS_DIR, results_file), 'a') as file:
-                    file.write("%s,%s,%s\n" % (s, time, throughput))
-            else:
-                print line
+                with open('%s/%s' % (results_dir, results_file), 'a') as file:
+                    file.write("%s,%s,%s,%s\n" % (s, cong_ctl, time, thru))
 
         start_time += interval_time
