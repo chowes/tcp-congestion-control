@@ -15,7 +15,7 @@ red_params = {
     'min': 30000,
     'max': 30001,
     'avpkt': 1500,
-    'burst': 100,
+    'burst': 20,
     'prob': 1
 }
 
