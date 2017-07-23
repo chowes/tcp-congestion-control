@@ -37,15 +37,20 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem[\protect\citeauthoryear{Corporation}{Corporation}{2016}]%
-        {intel_corporation_intel_2016}
-\bibfield{author}{\bibinfo{person}{Intel Corporation}.}
-  \bibinfo{year}{2016}\natexlab{}.
-\newblock \bibinfo{title}{Intel {Software} {Guard} {Extensions}}.
-\newblock   (\bibinfo{year}{2016}).
+\bibitem[\protect\citeauthoryear{Alizadeh, Greenberg, Maltz, Padhye, Patel,
+  Prabhakar, Sengupta, and Sridharan}{Alizadeh et~al\mbox{.}}{2010}]%
+        {alizadeh_data_2010}
+\bibfield{author}{\bibinfo{person}{Mohammad Alizadeh}, \bibinfo{person}{Albert
+  Greenberg}, \bibinfo{person}{David~A. Maltz}, \bibinfo{person}{Jitendra
+  Padhye}, \bibinfo{person}{Parveen Patel}, \bibinfo{person}{Balaji Prabhakar},
+  \bibinfo{person}{Sudipta Sengupta}, {and} \bibinfo{person}{Murari
+  Sridharan}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Data center tcp (dctcp)}. In
+  \bibinfo{booktitle}{{\em {ACM} {SIGCOMM} computer communication review}},
+  Vol.~\bibinfo{volume}{40}. \bibinfo{publisher}{ACM}, \bibinfo{pages}{63--74}.
 \newblock
 \showURL{%
-\url{https://software.intel.com/en-us/sgx}}
+\url{http://dl.acm.org/citation.cfm?id=1851192}}
 
 
 \end{thebibliography}
