@@ -230,7 +230,7 @@ if __name__ == '__main__':
         num_flows=2,
         time=60)
 
-# test queue size with twenty flows over a shared bottleneck
+    # test queue size with twenty flows over a shared bottleneck
     print "queue test: tcp reno - 20 flows"
     dctcp_queue_test(
         use_dctcp=False,

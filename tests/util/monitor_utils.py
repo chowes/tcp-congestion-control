@@ -36,7 +36,7 @@ def monitor_qlen(iface, testname, filename, run_time=10, interval=0.1):
 def monitor_throughput(iface, testname, filename, run_time=10):
 
     """ Measures the throughput of the specified interace over a given
-        interval and appends results to a .csv file """
+        run time and appends results to a .csv file """
 
     iface_pattern = re.compile(iface)
     spaces = re.compile('\s+')
