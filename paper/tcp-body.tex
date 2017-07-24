@@ -68,10 +68,10 @@ In order to replicate the queue length results shown in Figures 1 and 13 ~\cite{
 
  Both DCTCP and TCP New Reno made nearly full use of the 100 Mbps bandwidth, maintaining an average of 98.56 and 98.39 Mbps throughput respectively for $N = 2$, which is consistent with the results of the original paper \cite{alizadeh_data_2010}.
 
-The model presented by the authors suggests setting $K$ as a function of both link speed and RTT, and showed that throughput was insensitive to low values of $K$ at link rates of 1Gbps. Since an initial attempt to reproduce these findings with an RTT of 100$\mu$s at a link speed of 100 Mbps confirmed that throughput was insensitive to $K$, the RTT was increased to 10 ms to compensate for limited bandwidth and the test was repeated. Figure 3 shows the total throughput of two flows transferring data to a single receiver as a function of the marking threshold, $K$. The results under these conditions showed that throughput increased with $K$ until the maximum throughput was reached at $K \approx 15$. 
+The model presented by the authors suggests setting $K$ as a function of both link speed and RTT, and showed that throughput was insensitive to low values of $K$ at link rates of 1Gbps. Since an initial attempt to reproduce these findings with an RTT of 100$\mu$s at a link speed of 100 Mbps confirmed that throughput was insensitive to $K$, the RTT was increased to 10 ms to compensate for limited bandwidth and the test was repeated. Figure 3 shows the total throughput of two flows transferring data to a single receiver as a function of the marking threshold, $K$. The results under these conditions showed that throughput increased with $K$ until the maximum throughput was reached at $K \approx 12$. 
 
 \begin{figure}
-\includegraphics[height=1.75in,width=3in]{k_throughput}
+\includegraphics[height=1.75in,width=3in]{k_throughput_delay}
 \caption{Throughput as a function of K}
 \end{figure}
 
