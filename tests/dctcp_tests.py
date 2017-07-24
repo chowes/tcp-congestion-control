@@ -48,7 +48,7 @@ def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=400, k=k, n=num_hosts, delay='0.1ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=400, k=k, n=num_hosts, delay='500us', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -106,7 +106,7 @@ def dctcp_convergence_test(use_dctcp, testname, results_file, bw=100,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=200, n=num_hosts, delay='0.1ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=200, n=num_hosts, delay='500us', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -239,7 +239,7 @@ if __name__ == '__main__':
         throughput_file=throughput_file,
         bw=100,
         num_flows=20,
-        time=60)
+        time=5)
 
     print "queue test: dctcp - 20 flows"
     dctcp_queue_test(
@@ -249,7 +249,7 @@ if __name__ == '__main__':
         throughput_file=throughput_file,
         bw=100,
         num_flows=20,
-        time=60)
+        time=5)
 
     print "dctcp convergence test - 5 flows"
     dctcp_convergence_test(
@@ -269,18 +269,18 @@ if __name__ == '__main__':
         num_flows=5,
         interval_time=60)
 
-    # print "dctcp - test for ideal K"
-    # for i in range(1, 60):
-    #     print "Testing throughput - K = %s" % (i + 1)
-    #     dctcp_queue_test(
-    #          use_dctcp=True,
-    #          testname=i + 1,
-    #          queue_file=queue_k_file,
-    #          throughput_file=throughput_k_file,
-    #          bw=100,
-    #          k=i + 1,
-    #          num_flows=2,
-    #          time=30)
+    print "dctcp - test for ideal K"
+    for i in range(1, 60):
+        print "Testing throughput - K = %s" % (i + 1)
+        dctcp_queue_test(
+             use_dctcp=True,
+             testname=i + 1,
+             queue_file=queue_k_file,
+             throughput_file=throughput_k_file,
+             bw=100,
+             k=i + 1,
+             num_flows=2,
+             time=30)
 
     tcp_utils.reset_tcp()
 
