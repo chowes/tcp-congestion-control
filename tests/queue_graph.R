@@ -21,4 +21,4 @@ converg_graph(subset(converg_data, cong_ctl == "dctcp"), "paper/figures/dctcp_co
 converg_graph(subset(converg_data, cong_ctl == "reno"), "paper/figures/reno_converg.pdf", save=FALSE)
 
 # generate throughput graph based on K, no effect after 20 so we can cut it off at k = 60
-k_throughput_graph(subset(throughput_data, k <= 60), "paper/figures/k_throughput.pdf", save=FALSE)
+k_throughput_graph(throughput_data, "paper/figures/k_throughput.pdf", save=FALSE)

@@ -14,7 +14,7 @@ This paper discusses a number of approaches to TCP congestion control aimed at i
 
 The applications running in modern data centers rely heavily on the \emph{partition/aggregate} design pattern, in which an application is broken in into hierarchical layers and time-sensitive requests at higher layers are divided and delegated to workers in the lower layers. Workers perform some component of a task and return a result to an aggregator, which is combined with results from other workers and passed back up through the hierarchy. 
 
-\subsection{Impairments}
+\subsection{Performance Impairments}
 
 \subsubsection{Incast}
 
@@ -33,6 +33,8 @@ TCP throughput collapse, or TCP \emph{incast},
 \subsection{Multipath TCP}
 
 \subsection{TCP BBR}
+
+TCP BBR (Bottleneck, Bandwidth, and Round-trip propogation time) uses ``congestion-based congestion control'' in place of traditional loss-based congestion detection mechanisms to improve the performance of TCP. TCP BBR is intended as a general replacement for traditional TCP congenstion control mechanisms, though it is currently being implemented in a number of Google services including the Google Cloud Platform as well as Google's B4 Backbone, which is a wide area network comprised of shallow buffered commodity switches similar to those used in data centers ~\cite{cardwell_bbr:_2016}.  
 
 \subsection{Data Center TCP}
 
