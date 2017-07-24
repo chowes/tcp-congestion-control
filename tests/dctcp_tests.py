@@ -269,18 +269,18 @@ if __name__ == '__main__':
         num_flows=5,
         interval_time=60)
 
-    print "dctcp - test for ideal K"
-    for i in range(1, 60):
-        print "Testing throughput - K = %s" % (i + 1)
-        dctcp_queue_test(
-             use_dctcp=True,
-             testname=i + 1,
-             queue_file=queue_k_file,
-             throughput_file=throughput_k_file,
-             bw=100,
-             k=i + 1,
-             num_flows=2,
-             time=30)
+    # print "dctcp - test for ideal K"
+    # for i in range(1, 60):
+    #     print "Testing throughput - K = %s" % (i + 1)
+    #     dctcp_queue_test(
+    #          use_dctcp=True,
+    #          testname=i + 1,
+    #          queue_file=queue_k_file,
+    #          throughput_file=throughput_k_file,
+    #          bw=100,
+    #          k=i + 1,
+    #          num_flows=2,
+    #          time=30)
 
     tcp_utils.reset_tcp()
 

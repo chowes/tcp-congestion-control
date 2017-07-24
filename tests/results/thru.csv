@@ -1,0 +1,5 @@
+cong_ctl,iface,thru
+reno_2,s1-eth1,98.389157
+dctcp_2,s1-eth1,98.563429
+reno_20,s1-eth1,0.132323
+dctcp_20,s1-eth1,0.158961
