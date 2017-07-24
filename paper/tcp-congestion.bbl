@@ -53,6 +53,18 @@
 \url{http://dl.acm.org/citation.cfm?id=1851192}}
 
 
+\bibitem[\protect\citeauthoryear{Cardwell}{Cardwell}{2017}]%
+        {cardwell_tcp_2017}
+\bibfield{author}{\bibinfo{person}{Neal Cardwell}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{{TCP} {BBR} congestion control comes to {GCP} –
+  your {Internet} just got faster}.
+\newblock   (\bibinfo{year}{2017}).
+\newblock
+\showURL{%
+\url{https://cloudplatform.googleblog.com/2017/07/TCP-BBR-congestion-control-comes-to-GCP-your-Internet-just-got-faster.html}}
+
+
 \bibitem[\protect\citeauthoryear{Cardwell, Cheng, Gunn, Yeganeh, and
   Jacobson}{Cardwell et~al\mbox{.}}{2016}]%
         {cardwell_bbr:_2016}
