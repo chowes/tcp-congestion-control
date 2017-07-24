@@ -20,7 +20,7 @@ TCP throughput collapse, or \emph{incast congestion}, arises in many-to-one comm
 
 \subsubsection{Buffer Bloat and Underflow}
 
-The ``additive increase, multiplicative decrease'' approach to congestion control in traditional TCP implementations causes long flows to build up buffer queue length until a buffer is overwhelmed and packet loss is detected, at which point the TCP send window is cut, and the sender once again begins to slowly increase the send window. In effect, this approach to congestion control leads to queue buildup, or buffer bloat, which causes long queueing delays even in the absense of packet loss. Conversely, when buffers are small, packet loss is mistakenly interpreted as network congestion, leading to underutilization of network resources \cite{cardwell_bbr:_2016}.
+The ``additive increase, multiplicative decrease'' approach to congestion control in traditional TCP implementations causes long flows to build up buffer queue length until a buffer is overwhelmed and packet loss is detected, at which point the sender-side TCP congestion window is cut, and the sender once again begins to slowly increase the send window. In effect, this approach to congestion control leads to queue buildup, or buffer bloat, which causes long queueing delays even in the absense of packet loss. Conversely, when buffers are small, packet loss is mistakenly interpreted as network congestion, leading to underutilization of network resources \cite{cardwell_bbr:_2016}.
 
 In data centers, this causes latency critical query traffic to incur queuing delays in the presence of long-lived background flows, which steadily build up and maintain large buffer queues. Moreover, improving resource utilization through dynamic buffer allocation means that long lived flows can also cause buffer pressure that impacts flows traversing different ports on the same switch ~\cite{alizadeh_data_2010}.
 
@@ -28,17 +28,21 @@ In data centers, this causes latency critical query traffic to incur queuing del
 
 As a result of the performance impairments discussed above, developers have adopted provisional solutions that incur performance costs that impact the overall usefulness of the application. For example, incast congestion can be avoided by adding random delays to query traffic, which reduces the overall response time at higher levels of the hierarchy ~\cite{alizadeh_data_2010, floyd_synchronization_1994}. The solutions presented here attempt to address issues underlying incast congestion and buffer utilization problems by overhauling TCP's congestion control mechanisms and making use of multiple paths available in highly connected data center networks.
 
-\subsection{Incast TCP}
+\subsection{Data Center TCP}
+
+Data center TCP (DCTCP) attempts to address the problem of latency in partition/aggregate traffic by reducing queue length without affecting throughput for large TCP flows. A DCTCP sender estimates the number of packets marked by the switch based on Explicit Congestion Notification (ECN) feedback from the receiver, and uses this information to reduce its window based on the ratio of marked packets. 
+
+\subsection{Incast Congestion Control for TCP}
+
+Incast Congestion Control for TCP (ICTCP) seeks to improve performance of existing TCP implementations in data center environments by implementing connection throttling mechanisms on the receiver side in an effort to prevent the onset incast congestion. Since incast congestion typically manifests at the last hop switch before synchronized traffic arrives at the receiver, an ICTCP receiver throttles incoming connections on a given interface by measuring the throughput of incoming connections and adjusting the TCP receive window to prevent incoming connections from overwhelming the last hop switch. The TCP receive window is intended as a flow control mechanism designed to prevent a sender from overwhelming the receiver. ICTCP leverages this mechanism as a form of congestion avoidance by setting the receive window for each incoming connection such that their combined throughput will not fill buffers in the last hop switch faster than it can be pushed out onto the link ~\cite{wu_ictcp:_2013}. 
+
+In practice, ICTCP is effective at avoiding incast congestion, but does not fully utilize bandwidth when the number of senders is small ~\cite{wu_ictcp:_2013}. Interestingly, ICTCP outperforms DCTCP in terms of packet loss when many senders send highly synchronized bursts of data ~\cite{wu_ictcp:_2013, alizadeh_data_2010}. Where DCTCP responds to incast congestion after congestion is detected at the switch, ICTCP's uses an ``available bandwidth'' based slow start mechanism and focuses on congestion avoidance, which enables ICTCP receivers to deal with many concurrent, highly synchronized senders without incurring packet loss \cite{alizadeh_data_2010, wu_ictcp:_2013}.
 
 \subsection{Multipath TCP}
 
 \subsection{TCP BBR}
 
 TCP BBR (Bottleneck, Bandwidth, and Round-trip propagation time) uses ``congestion-based congestion control'' in place of traditional loss-based congestion detection mechanisms to improve the performance of TCP. TCP BBR is intended as a general replacement for traditional TCP congestion control mechanisms, though it is currently being implemented in a number of Google services including the Google Cloud Platform as well as Google's B4 Backbone, which is a wide area network comprised of shallow buffered commodity switches similar to those used in data centers ~\cite{cardwell_bbr:_2016, cardwell_tcp_2017}. 
-
-\subsection{Data Center TCP}
-
-Data center TCP (DCTCP) attempts to address the problem of latency in partition/aggregate traffic by reducing queue length without affecting throughput for large TCP flows.
 
 \section{Reproducing Key DCTCP Results}
 
@@ -64,7 +68,7 @@ In order to replicate the queue length results shown in Figures 1 and 13 ~\cite{
 
  Both DCTCP and TCP New Reno made nearly full use of the 100 Mbps bandwidth, maintaining an average of 98.56 and 98.39 Mbps throughput respectively for $N = 2$, which is consistent with the results of the original paper \cite{alizadeh_data_2010}.
 
-The model presented by the authors suggests setting $K$ as a function of link speed and RTT, and an initial test with an RTT of 100$\mu$s and a link speed of 100 Mbps showed that throughput was insensitive to $K$, which is consistent the authors' findings in tests with link speeds of 1 Gbps. Therefore, in order to compensate for limited bandwidth, the RTT was increased to 1 ms and the test was repeated. Figure 3 shows the total throughput of two flows transferring data to a single receiver as a function of the marking threshold, $K$. The results under these conditions showed that throughput increased with $K$ until the maximum throughput was reached at $K \approx 20$. 
+The model presented by the authors suggests setting $K$ as a function of both link speed and RTT, and showed that throughput was insensitive to low values of $K$ at link rates of 1Gbps. Since an initial attempt to reproduce these findings with an RTT of 100$\mu$s at a link speed of 100 Mbps confirmed that throughput was insensitive to $K$, the RTT was increased to 10 ms to compensate for limited bandwidth and the test was repeated. Figure 3 shows the total throughput of two flows transferring data to a single receiver as a function of the marking threshold, $K$. The results under these conditions showed that throughput increased with $K$ until the maximum throughput was reached at $K \approx 15$. 
 
 \begin{figure}
 \includegraphics[height=1.75in,width=3in]{k_throughput}
