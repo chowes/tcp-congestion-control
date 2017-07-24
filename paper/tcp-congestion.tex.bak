@@ -1,0 +1,43 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
+
+
+% Copyright
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+\begin{document}
+\title{Data Center TCP - Reproducing Key Findings}
+\subtitle{CS 656 Research Paper}
+
+\author{Colin Howes}
+\affiliation{%
+  \institution{University of Waterloo}
+  \streetaddress{200 University Ave. W}
+  \city{Waterloo} 
+  \state{ON} 
+  \postcode{N2L 3G1}
+}
+\email{chowes@uwaterloo.ca}
+
+\begin{abstract}
+
+Data centers supporting modern large-scale applications must host a diverse range of heterogenous traffic with varying throughput and delay requirements. Transport layer protocols powering data center traffic must be able to tolerate intense bursts of traffic, provide low latencies for time-sensitive traffic, all while maintaining high throughput for large data flows. TCP makes up the majority of traffic in modern data centers, though a number of performance impairments suggest that traditional TCP congestion control mechanisms are ill-suited to the demands of a data center environment. Several modifications to the TCP protocol have been proposed to address shortcomings in conventional TCP congestion control algorithms, which relies on packet loss as a metric of network congestion. This paper presents an overview of traffic problems in modern data centers, as well as a number of proposed modifications to TCP's congestion control mechanisms aimed at improving the performance of TCP for typical data center communication patterns. Finally, key results related to the performance of Data Center TCP are replicated and discussed.
+
+\end{abstract}
+
+\maketitle
+
+\input{tcp-body}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{tcp-congestion} 
+
+\end{document}
