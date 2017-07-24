@@ -3,6 +3,7 @@
 setwd("~/Documents/School/tcp-congestion-control/")
 
 library(ggplot2)
+library(plotrix)
 source("tests/plots.R")
 
 queue_data <- read.csv(file = "tests/results/queue.csv", header = TRUE)

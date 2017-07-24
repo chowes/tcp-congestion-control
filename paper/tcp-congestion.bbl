@@ -113,6 +113,21 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Floyd and Jacobson}{Floyd and
+  Jacobson}{1994}]%
+        {floyd_synchronization_1994}
+\bibfield{author}{\bibinfo{person}{S. Floyd} {and} \bibinfo{person}{V.
+  Jacobson}.} \bibinfo{year}{1994}\natexlab{}.
+\newblock \showarticletitle{The synchronization of periodic routing messages}.
+\newblock \bibinfo{journal}{{\em IEEE/ACM Transactions on Networking\/}}
+  \bibinfo{volume}{2}, \bibinfo{number}{2} (\bibinfo{date}{April}
+  \bibinfo{year}{1994}), \bibinfo{pages}{122--136}.
+\newblock
+\showISSN{1063-6692}
+\showDOI{%
+\url{https://doi.org/10.1109/90.298431}}
+
+
 \bibitem[\protect\citeauthoryear{Hamilton}{Hamilton}{2007}]%
         {hamilton_designing_2007}
 \bibfield{author}{\bibinfo{person}{James Hamilton}.}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  24 JUL 2017 01:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  24 JUL 2017 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,65 +697,67 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) (./tcp-body.tex
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 19.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1.1{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 23.
 
-<queue_2_flows.pdf, id=103, 722.7pt x 361.35pt>
+<queue_2_flows.pdf, id=107, 722.7pt x 361.35pt>
 File: queue_2_flows.pdf Graphic file (type pdf)
  <use queue_2_flows.pdf>
-Package pdftex.def Info: queue_2_flows.pdf used on input line 58.
+Package pdftex.def Info: queue_2_flows.pdf used on input line 54.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
-Overfull \hbox (11.79027pt too wide) in paragraph at lines 58--59
+Overfull \hbox (11.79027pt too wide) in paragraph at lines 54--55
  [][] 
  []
 
-<queue_cdf.pdf, id=104, 722.7pt x 361.35pt>
+<queue_cdf.pdf, id=108, 722.7pt x 361.35pt>
 File: queue_cdf.pdf Graphic file (type pdf)
  <use queue_cdf.pdf>
-Package pdftex.def Info: queue_cdf.pdf used on input line 63.
+Package pdftex.def Info: queue_cdf.pdf used on input line 59.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
-Overfull \hbox (11.79027pt too wide) in paragraph at lines 63--64
+Overfull \hbox (11.79027pt too wide) in paragraph at lines 59--60
  [][] 
  []
 
-[2.2 <./queue_2_flows.pdf> <./queue_cdf.pdf>]
-<k_throughput.pdf, id=136, 578.16pt x 361.35pt>
+[2.2 <./queue_2_flows.pdf>] <k_throughput.pdf, id=130, 578.16pt x 361.35pt>
 File: k_throughput.pdf Graphic file (type pdf)
- <use k_throughput.pdf>
-Package pdftex.def Info: k_throughput.pdf used on input line 72.
-(pdftex.def)             Requested size: 216.80946pt x 126.46887pt.
 
-<dctcp_converg.pdf, id=137, 722.7pt x 361.35pt>
+<use k_throughput.pdf>
+Package pdftex.def Info: k_throughput.pdf used on input line 70.
+(pdftex.def)             Requested size: 216.80946pt x 126.46887pt.
+ <dctcp_converg.pdf, id=131, 722.7pt x 361.35pt>
 File: dctcp_converg.pdf Graphic file (type pdf)
- <use dctcp_converg.pdf>
-Package pdftex.def Info: dctcp_converg.pdf used on input line 83.
+
+<use dctcp_converg.pdf>
+Package pdftex.def Info: dctcp_converg.pdf used on input line 81.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
-Overfull \hbox (11.79027pt too wide) in paragraph at lines 83--84
+Overfull \hbox (11.79027pt too wide) in paragraph at lines 81--82
  [][] 
  []
 
-<reno_converg.pdf, id=138, 722.7pt x 361.35pt>
+<reno_converg.pdf, id=132, 722.7pt x 361.35pt>
 File: reno_converg.pdf Graphic file (type pdf)
  <use reno_converg.pdf>
-Package pdftex.def Info: reno_converg.pdf used on input line 88.
+Package pdftex.def Info: reno_converg.pdf used on input line 86.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
-Overfull \hbox (11.79027pt too wide) in paragraph at lines 88--89
+Overfull \hbox (11.79027pt too wide) in paragraph at lines 86--87
  [][] 
  []
 
 ) (./tcp-congestion.bbl
-Underfull \vbox (badness 5460) has occurred while \output is active []
-
 Missing character: There is no â in font cmr7!
 Missing character: There is no € in font cmr7!
 Missing character: There is no “ in font cmr7!
@@ -781,25 +783,27 @@ Overfull \hbox (32.62268pt too wide) in paragraph at lines 58--66
 -[]Internet-[]just-[]got-[]faster .
  []
 
-) [3.3 <./k_throughput.pdf> <./dctcp_converg.pdf> <./reno_converg.pdf>]
+[3.3 <./queue_cdf.pdf> <./k_throughput.pdf> <./dctcp_converg.pdf> <./reno_conve
+rg.pdf>]) [4.4
+
+]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 43.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 43.
-
-(./tcp-congestion.aux)
+ (./tcp-congestion.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 43.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 43.
 Package rerunfilecheck Info: File `tcp-congestion.out' has not changed.
-(rerunfilecheck)             Checksum: 4A2422B88CF973D6C58B59C3204E34AA;2141.
+(rerunfilecheck)             Checksum: 8768060AF2002D809F7CCCFDD82266E8;2117.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 43.
  ) 
 Here is how much of TeX's memory you used:
- 15211 strings out of 494946
- 220821 string characters out of 6180982
- 358285 words of memory out of 5000000
- 17978 multiletter control sequences out of 15000+600000
- 16303 words of font info for 106 fonts, out of 8000000 for 9000
+ 15214 strings out of 494946
+ 220918 string characters out of 6180982
+ 357340 words of memory out of 5000000
+ 17981 multiletter control sequences out of 15000+600000
+ 16439 words of font info for 106 fonts, out of 8000000 for 9000
  175 hyphenation exceptions out of 8191
- 60i,11n,94p,1162b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,94p,1166b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texliv
@@ -813,10 +817,10 @@ onts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 si9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on tcp-congestion.pdf (3 pages, 254612 bytes).
+Output written on tcp-congestion.pdf (4 pages, 252421 bytes).
 PDF statistics:
- 245 PDF objects out of 1000 (max. 8388607)
- 199 compressed objects within 2 object streams
+ 253 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
  37 named destinations out of 1000 (max. 500000)
  20110 words of extra memory for PDF output out of 20736 (max. 10000000)
 
