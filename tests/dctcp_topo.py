@@ -23,14 +23,14 @@ red_params = {
 class DCTCPTopo(Topo):
     "Single switch topology for testing DCTCP queue length"
 
-    def __init__(self, n=3, bw=100, max_q=None, k=20, delay=None, cpu=None,
+    def __init__(self, n=3, bw=100, max_q=None, k=20, delay=None,
                  use_dctcp=False):
 
         super(DCTCPTopo, self).__init__()
 
         # set host options
         host_opts = {
-            'cpu': cpu
+            'cpu': None
         }
 
         # set sender link options

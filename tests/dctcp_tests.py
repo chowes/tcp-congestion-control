@@ -48,7 +48,7 @@ def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=400, k=k, n=num_hosts, delay='1ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=400, k=k, n=num_hosts, delay='0.1ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
@@ -106,7 +106,7 @@ def dctcp_convergence_test(use_dctcp, testname, results_file, bw=100,
         tcp_utils.disable_dctcp()
 
     topo = DCTCPTopo(
-        bw=bw, max_q=200, n=num_hosts, delay='1ms', use_dctcp=use_dctcp)
+        bw=bw, max_q=200, n=num_hosts, delay='0.1ms', use_dctcp=use_dctcp)
 
     net = Mininet(
         topo=topo, host=CPULimitedHost, link=TCLink, autoPinCpus=True)
