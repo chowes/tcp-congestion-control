@@ -1,5 +1,5 @@
 cong_ctl,iface,thru
-reno_2,s1-eth1,99.051713
-dctcp_2,s1-eth1,97.94168
-reno_20,s1-eth1,0.108441
-dctcp_20,s1-eth1,0.001276
+reno_2,s1-eth1,97.696451
+dctcp_2,s1-eth1,97.507072
+reno_20,s1-eth1,0.126064
+dctcp_20,s1-eth1,0.117475

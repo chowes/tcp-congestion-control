@@ -42,7 +42,7 @@ class DCTCPTopo(Topo):
 
         recv_link_opts = {
             'bw': bw,
-            'delay': 0,
+            'delay': delay,
             'max_queue_size': max_q
         }
 
