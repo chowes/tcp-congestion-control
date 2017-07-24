@@ -53,4 +53,78 @@
 \url{http://dl.acm.org/citation.cfm?id=1851192}}
 
 
+\bibitem[\protect\citeauthoryear{Cardwell, Cheng, Gunn, Yeganeh, and
+  Jacobson}{Cardwell et~al\mbox{.}}{2016}]%
+        {cardwell_bbr:_2016}
+\bibfield{author}{\bibinfo{person}{Neal Cardwell}, \bibinfo{person}{Yuchung
+  Cheng}, \bibinfo{person}{C.~Stephen Gunn}, \bibinfo{person}{Soheil~Hassas
+  Yeganeh}, {and} \bibinfo{person}{Van Jacobson}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{BBR}: {Congestion}-{Based} {Congestion}
+  {Control}}.
+\newblock \bibinfo{journal}{{\em Queue\/}} \bibinfo{volume}{14},
+  \bibinfo{number}{5} (\bibinfo{date}{Oct.} \bibinfo{year}{2016}),
+  \bibinfo{pages}{50:20--50:53}.
+\newblock
+\showISSN{1542-7730}
+\showDOI{%
+\url{https://doi.org/10.1145/3012426.3022184}}
+
+
+\bibitem[\protect\citeauthoryear{Chen, Griffith, Liu, Katz, and Joseph}{Chen
+  et~al\mbox{.}}{2009}]%
+        {chen_understanding_2009}
+\bibfield{author}{\bibinfo{person}{Yanpei Chen}, \bibinfo{person}{Rean
+  Griffith}, \bibinfo{person}{Junda Liu}, \bibinfo{person}{Randy~H. Katz},
+  {and} \bibinfo{person}{Anthony~D. Joseph}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Understanding {TCP} {Incast} {Throughput}
+  {Collapse} in {Datacenter} {Networks}}. In \bibinfo{booktitle}{{\em
+  Proceedings of the 1st {ACM} {Workshop} on {Research} on {Enterprise}
+  {Networking}}} {\em (\bibinfo{series}{{WREN} '09})}.
+  \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY, USA},
+  \bibinfo{pages}{73--82}.
+\newblock
+\showISBNx{978-1-60558-443-0}
+\showDOI{%
+\url{https://doi.org/10.1145/1592681.1592693}}
+
+
+\bibitem[\protect\citeauthoryear{Dean and Ghemawat}{Dean and Ghemawat}{2004}]%
+        {dean_mapreduce:_2004}
+\bibfield{author}{\bibinfo{person}{Jeffrey Dean} {and} \bibinfo{person}{Sanjay
+  Ghemawat}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{{MapReduce}: simplified data processing on large
+  clusters}.
+\newblock \bibinfo{journal}{{\em Com-munications ofthe ACM\/}}
+  \bibinfo{volume}{51}, \bibinfo{number}{1} (\bibinfo{year}{2004}),
+  \bibinfo{pages}{107--l}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hamilton}{Hamilton}{2007}]%
+        {hamilton_designing_2007}
+\bibfield{author}{\bibinfo{person}{James Hamilton}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{On {Designing} and {Deploying} {Internet}-{Scale}
+  {Services}}. In \bibinfo{booktitle}{{\em Proceedings of the 21st {Large}
+  {Installation} {System} {Administration} {Conference}}}.
+  \bibinfo{address}{Austin, TX}, \bibinfo{pages}{231--242}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Phanishayee, Krevat, Vasudevan, Andersen,
+  Ganger, Gibson, and Seshan}{Phanishayee et~al\mbox{.}}{2008}]%
+        {phanishayee_measurement_2008}
+\bibfield{author}{\bibinfo{person}{Amar Phanishayee}, \bibinfo{person}{Elie
+  Krevat}, \bibinfo{person}{Vijay Vasudevan}, \bibinfo{person}{David~G
+  Andersen}, \bibinfo{person}{Gregory~R Ganger}, \bibinfo{person}{Garth~A
+  Gibson}, {and} \bibinfo{person}{Srinivasan Seshan}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Measurement and {Analysis} of {TCP} {Throughput}
+  {Collapse} in {Cluster}-based {Storage} {Systems}.}. In
+  \bibinfo{booktitle}{{\em {FAST}}}, Vol.~\bibinfo{volume}{8}.
+  \bibinfo{pages}{1--14}.
+\newblock
+
+
 \end{thebibliography}
