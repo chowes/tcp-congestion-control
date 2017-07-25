@@ -62,7 +62,7 @@
 \newblock   (\bibinfo{year}{2017}).
 \newblock
 \showURL{%
-\url{https://cloudplatform.googleblog.com/2017/07/TCP-BBR-congestion-control-comes-to-GCP-your-Internet\--just-got-faster.html}}
+\url{https://cloudplatform.googleblog.com/2017/07/TCP-BBR-congestion-control-comes-to-GCP-your-Internet-just-got-faster.html}}
 
 
 \bibitem[\protect\citeauthoryear{Cardwell, Cheng, Gunn, Yeganeh, and
@@ -139,6 +139,30 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Kleinrock}{Kleinrock}{1979}]%
+        {kleinrock_power_1979}
+\bibfield{author}{\bibinfo{person}{L. Kleinrock}.}
+  \bibinfo{year}{1979}\natexlab{}.
+\newblock \showarticletitle{Power and {Deterministic} {Rules} of {Thumb} for
+  {Probabilistic} {Problems} in {Computer} {Communications}}. In
+  \bibinfo{booktitle}{{\em Conference {Record}, {International} {Conference} on
+  {Communications}}}. \bibinfo{address}{Boston, Massachusetts},
+  \bibinfo{pages}{43.1.1--43.1.10}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kühlewind, Wagner, Espinosa, and
+  Briscoe}{Kühlewind et~al\mbox{.}}{2014}]%
+        {kuhlewind_using_2014}
+\bibfield{author}{\bibinfo{person}{Mirja Kühlewind}, \bibinfo{person}{David~P
+  Wagner}, \bibinfo{person}{Juan Manuel~Reyes Espinosa}, {and}
+  \bibinfo{person}{Bob Briscoe}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Using data center {TCP} ({DCTCP}) in the
+  {Internet}}. In \bibinfo{booktitle}{{\em Globecom {Workshops} ({GC}
+  {Wkshps}), 2014}}. \bibinfo{publisher}{IEEE}, \bibinfo{pages}{583--588}.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Phanishayee, Krevat, Vasudevan, Andersen,
   Ganger, Gibson, and Seshan}{Phanishayee et~al\mbox{.}}{2008}]%
         {phanishayee_measurement_2008}
@@ -152,6 +176,30 @@
   \bibinfo{booktitle}{{\em {FAST}}}, Vol.~\bibinfo{volume}{8}.
   \bibinfo{pages}{1--14}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Raghaven and Goplan}{Raghaven and
+  Goplan}{2013}]%
+        {raghaven_cs244_2013}
+\bibfield{author}{\bibinfo{person}{Prachetaa Raghaven} {and}
+  \bibinfo{person}{Arjun Goplan}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{title}{{CS}244 ’13 {DCTCP}}.
+\newblock   (\bibinfo{date}{March} \bibinfo{year}{2013}).
+\newblock
+\showURL{%
+\url{https://reproducingnetworkresearch.wordpress.com/2013/03/13/cs244-13-dctcp/}}
+
+
+\bibitem[\protect\citeauthoryear{Team}{Team}{2014}]%
+        {mininet_team_mininet:_2014}
+\bibfield{author}{\bibinfo{person}{Mininet Team}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \bibinfo{title}{Mininet: {An} {Instant} {Virtual} {Network} on your
+  {Laptop} (or other {PC}) - {Mininet}}.
+\newblock   (\bibinfo{year}{2014}).
+\newblock
+\showURL{%
+\url{http://mininet.org/}}
 
 
 \bibitem[\protect\citeauthoryear{Wu, Feng, Guo, and Zhang}{Wu

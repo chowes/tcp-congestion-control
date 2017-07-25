@@ -111,9 +111,9 @@ k_throughput_graph <- function(throughput_data, filename, save=FALSE) {
   plot <- ggplot(throughput_data, aes(x=k, y=thru)) +
     geom_line(size = 1.2) +
     labs(x = "K", y = "Throughput (Mbps)") +
-    coord_cartesian(ylim = c(0, 100), xlim=c(0, 60)) +
+    coord_cartesian(ylim = c(0, 100), xlim=c(0, 30)) +
     scale_y_continuous(expand = c(0, 0)) +
-    scale_x_continuous(breaks = seq(0, 60, by = 20)) +
+    scale_x_continuous(breaks = seq(0, 30, by = 10)) +
     theme_bw() + 
     theme(axis.title.y = element_text(size=20, margin = margin(0, 15, 0, 0), face="bold"),
           axis.title.x = element_text(size=20, margin = margin(15, 0, 0, 0), face="bold"),

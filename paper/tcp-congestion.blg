@@ -8,47 +8,49 @@ Database file #1: tcp-congestion.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty address in alizadeh_data_2010
 Warning--empty publisher in hamilton_designing_2007
+Warning--empty publisher in kleinrock_power_1979
+Warning--empty address in kuhlewind_using_2014
 Warning--empty publisher in phanishayee_measurement_2008
 Warning--empty address in phanishayee_measurement_2008
-You've used 9 entries,
+You've used 13 entries,
             5706 wiz_defined-function locations,
-            1373 strings with 17412 characters,
-and the built_in function-call counts, 13168 in all, are:
-= -- 1733
-> -- 475
+            1396 strings with 18198 characters,
+and the built_in function-call counts, 18330 in all, are:
+= -- 2354
+> -- 605
 < -- 0
-+ -- 150
-- -- 326
-* -- 988
-:= -- 1333
-add.period$ -- 45
-call.type$ -- 9
-change.case$ -- 71
-chr.to.int$ -- 9
-cite$ -- 13
-duplicate$ -- 843
-empty$ -- 615
-format.name$ -- 192
-if$ -- 2992
++ -- 186
+- -- 466
+* -- 1332
+:= -- 1849
+add.period$ -- 65
+call.type$ -- 13
+change.case$ -- 95
+chr.to.int$ -- 13
+cite$ -- 19
+duplicate$ -- 1195
+empty$ -- 873
+format.name$ -- 248
+if$ -- 4098
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 36
-newline$ -- 124
-num.names$ -- 72
-pop$ -- 361
+missing$ -- 46
+newline$ -- 158
+num.names$ -- 104
+pop$ -- 516
 preamble$ -- 1
-purify$ -- 116
+purify$ -- 160
 quote$ -- 0
-skip$ -- 319
+skip$ -- 467
 stack$ -- 0
-substring$ -- 1420
-swap$ -- 91
-text.length$ -- 326
+substring$ -- 2090
+swap$ -- 127
+text.length$ -- 512
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 214
-warning$ -- 4
-while$ -- 78
+type$ -- 334
+warning$ -- 6
+while$ -- 114
 width$ -- 0
-write$ -- 211
-(There were 4 warnings)
+write$ -- 283
+(There were 6 warnings)
