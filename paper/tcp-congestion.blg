@@ -10,45 +10,45 @@ Warning--empty address in alizadeh_data_2010
 Warning--empty publisher in hamilton_designing_2007
 Warning--empty publisher in phanishayee_measurement_2008
 Warning--empty address in phanishayee_measurement_2008
-You've used 9 entries,
+You've used 10 entries,
             5706 wiz_defined-function locations,
-            1373 strings with 17412 characters,
-and the built_in function-call counts, 13168 in all, are:
-= -- 1733
-> -- 475
+            1378 strings with 17590 characters,
+and the built_in function-call counts, 14937 in all, are:
+= -- 1969
+> -- 513
 < -- 0
-+ -- 150
-- -- 326
-* -- 988
-:= -- 1333
-add.period$ -- 45
-call.type$ -- 9
-change.case$ -- 71
-chr.to.int$ -- 9
-cite$ -- 13
-duplicate$ -- 843
-empty$ -- 615
-format.name$ -- 192
-if$ -- 2992
++ -- 162
+- -- 415
+* -- 1120
+:= -- 1508
+add.period$ -- 50
+call.type$ -- 10
+change.case$ -- 77
+chr.to.int$ -- 10
+cite$ -- 14
+duplicate$ -- 901
+empty$ -- 661
+format.name$ -- 212
+if$ -- 3314
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 36
-newline$ -- 124
-num.names$ -- 72
-pop$ -- 361
+newline$ -- 134
+num.names$ -- 80
+pop$ -- 387
 preamble$ -- 1
-purify$ -- 116
+purify$ -- 127
 quote$ -- 0
-skip$ -- 319
+skip$ -- 348
 stack$ -- 0
-substring$ -- 1420
-swap$ -- 91
-text.length$ -- 326
+substring$ -- 1755
+swap$ -- 94
+text.length$ -- 473
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 214
+type$ -- 244
 warning$ -- 4
-while$ -- 78
+while$ -- 87
 width$ -- 0
-write$ -- 211
+write$ -- 230
 (There were 4 warnings)
