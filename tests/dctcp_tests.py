@@ -38,7 +38,7 @@ TCP_STABILIZATION_TIME = 10
 def dctcp_queue_test(use_dctcp, testname, queue_file, throughput_file,
                      k=20, bw=100, delay="25us", num_flows=2, time=10):
 
-    "Run DCTCP queue size and throughput tests"
+    """Run DCTCP queue size and throughput tests"""
 
     num_hosts = num_flows + 1
 

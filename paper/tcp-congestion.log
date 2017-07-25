@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  25 JUL 2017 10:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  25 JUL 2017 19:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,7 +716,7 @@ Underfull \vbox (badness 2671) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3.3]
-<queue_2_flows.pdf, id=144, 722.7pt x 361.35pt>
+<queue_2_flows.pdf, id=145, 722.7pt x 361.35pt>
 File: queue_2_flows.pdf Graphic file (type pdf)
  <use queue_2_flows.pdf>
 Package pdftex.def Info: queue_2_flows.pdf used on input line 76.
@@ -726,7 +726,7 @@ Overfull \hbox (11.79027pt too wide) in paragraph at lines 76--77
  [][] 
  []
 
-<queue_cdf.pdf, id=145, 722.7pt x 361.35pt>
+<queue_cdf.pdf, id=146, 722.7pt x 361.35pt>
 File: queue_cdf.pdf Graphic file (type pdf)
  <use queue_cdf.pdf>
 Package pdftex.def Info: queue_cdf.pdf used on input line 81.
@@ -736,13 +736,14 @@ Overfull \hbox (11.79027pt too wide) in paragraph at lines 81--82
  [][] 
  []
 
-<k_throughput_delay.pdf, id=146, 578.16pt x 361.35pt>
+<k_throughput_delay.pdf, id=147, 578.16pt x 361.35pt>
 File: k_throughput_delay.pdf Graphic file (type pdf)
 
 <use k_throughput_delay.pdf>
 Package pdftex.def Info: k_throughput_delay.pdf used on input line 92.
 (pdftex.def)             Requested size: 216.80946pt x 126.46887pt.
- <dctcp_converg.pdf, id=147, 722.7pt x 361.35pt>
+ [4.4 <./queue_2_flows.pdf> <./queue_cdf.pdf> <./k_throughput_delay.pdf>] <dctc
+p_converg.pdf, id=178, 722.7pt x 361.35pt>
 File: dctcp_converg.pdf Graphic file (type pdf)
 
 <use dctcp_converg.pdf>
@@ -753,8 +754,7 @@ Overfull \hbox (11.79027pt too wide) in paragraph at lines 105--106
  [][] 
  []
 
-[4.4 <./queue_2_flows.pdf> <./queue_cdf.pdf> <./k_throughput_delay.pdf>]
-<reno_converg.pdf, id=178, 722.7pt x 361.35pt>
+<reno_converg.pdf, id=179, 722.7pt x 361.35pt>
 File: reno_converg.pdf Graphic file (type pdf)
  <use reno_converg.pdf>
 Package pdftex.def Info: reno_converg.pdf used on input line 110.
@@ -806,13 +806,13 @@ Package rerunfilecheck Info: File `tcp-congestion.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 43.
  ) 
 Here is how much of TeX's memory you used:
- 15261 strings out of 494946
- 221673 string characters out of 6180982
+ 15259 strings out of 494946
+ 221661 string characters out of 6180982
  359604 words of memory out of 5000000
  17996 multiletter control sequences out of 15000+600000
- 17230 words of font info for 119 fonts, out of 8000000 for 9000
+ 17179 words of font info for 118 fonts, out of 8000000 for 9000
  175 hyphenation exceptions out of 8191
- 60i,11n,94p,1394b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,1395b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texliv
@@ -826,10 +826,10 @@ onts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 si9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on tcp-congestion.pdf (5 pages, 269917 bytes).
+Output written on tcp-congestion.pdf (5 pages, 270818 bytes).
 PDF statistics:
- 285 PDF objects out of 1000 (max. 8388607)
- 236 compressed objects within 3 object streams
+ 286 PDF objects out of 1000 (max. 8388607)
+ 237 compressed objects within 3 object streams
  43 named destinations out of 1000 (max. 500000)
  20110 words of extra memory for PDF output out of 20736 (max. 10000000)
 
