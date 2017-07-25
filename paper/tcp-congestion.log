@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  24 JUL 2017 20:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  24 JUL 2017 21:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -744,31 +744,31 @@ Overfull \hbox (11.79027pt too wide) in paragraph at lines 79--80
 File: k_throughput_delay.pdf Graphic file (type pdf)
 
 <use k_throughput_delay.pdf>
-Package pdftex.def Info: k_throughput_delay.pdf used on input line 88.
+Package pdftex.def Info: k_throughput_delay.pdf used on input line 90.
 (pdftex.def)             Requested size: 216.80946pt x 126.46887pt.
  <dctcp_converg.pdf, id=142, 722.7pt x 361.35pt>
 File: dctcp_converg.pdf Graphic file (type pdf)
 
 <use dctcp_converg.pdf>
-Package pdftex.def Info: dctcp_converg.pdf used on input line 101.
+Package pdftex.def Info: dctcp_converg.pdf used on input line 103.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
-Overfull \hbox (11.79027pt too wide) in paragraph at lines 101--102
+Overfull \hbox (11.79027pt too wide) in paragraph at lines 103--104
  [][] 
  []
 
 <reno_converg.pdf, id=143, 722.7pt x 361.35pt>
 File: reno_converg.pdf Graphic file (type pdf)
  <use reno_converg.pdf>
-Package pdftex.def Info: reno_converg.pdf used on input line 106.
+Package pdftex.def Info: reno_converg.pdf used on input line 108.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
-Overfull \hbox (11.79027pt too wide) in paragraph at lines 106--107
+Overfull \hbox (11.79027pt too wide) in paragraph at lines 108--109
  [][] 
  []
 
-[4.4 <./queue_2_flows.pdf> <./queue_cdf.pdf> <./k_throughput_delay.pdf> <./dctc
-p_converg.pdf>]) (./tcp-congestion.bbl
+) (./tcp-congestion.bbl [4.4 <./queue_2_flows.pdf> <./queue_cdf.pdf> <./k_throu
+ghput_delay.pdf>]
 Missing character: There is no â in font cmr7!
 Missing character: There is no € in font cmr7!
 Missing character: There is no “ in font cmr7!
@@ -797,9 +797,7 @@ Overfull \hbox (32.62268pt too wide) in paragraph at lines 58--66
 Missing character: There is no â in font cmr7!
 Missing character: There is no € in font cmr7!
 Missing character: There is no ™ in font cmr7!
-) [5.5
-
- <./reno_converg.pdf>]
+) [5.5 <./dctcp_converg.pdf> <./reno_converg.pdf>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 43.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 43.
  (./tcp-congestion.aux)
@@ -816,7 +814,7 @@ Here is how much of TeX's memory you used:
  17987 multiletter control sequences out of 15000+600000
  17073 words of font info for 116 fonts, out of 8000000 for 9000
  175 hyphenation exceptions out of 8191
- 60i,11n,94p,1394b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,1394b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texliv
@@ -830,7 +828,7 @@ onts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 si9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on tcp-congestion.pdf (5 pages, 264061 bytes).
+Output written on tcp-congestion.pdf (5 pages, 266035 bytes).
 PDF statistics:
  276 PDF objects out of 1000 (max. 8388607)
  227 compressed objects within 3 object streams
