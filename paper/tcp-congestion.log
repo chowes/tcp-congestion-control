@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  25 JUL 2017 20:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.9)  25 JUL 2017 21:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -736,17 +736,16 @@ Overfull \hbox (11.79027pt too wide) in paragraph at lines 87--88
  [][] 
  []
 
-<k_throughput_delay.pdf, id=150, 578.16pt x 361.35pt>
+<k_throughput_delay.pdf, id=151, 578.16pt x 361.35pt>
 File: k_throughput_delay.pdf Graphic file (type pdf)
 
 <use k_throughput_delay.pdf>
 Package pdftex.def Info: k_throughput_delay.pdf used on input line 98.
 (pdftex.def)             Requested size: 216.80946pt x 126.46887pt.
- [4.4 <./queue_2_flows.pdf> <./queue_cdf.pdf> <./k_throughput_delay.pdf>] <dctc
-p_converg.pdf, id=182, 722.7pt x 361.35pt>
+ [4.4 <./queue_2_flows.pdf> <./queue_cdf.pdf>]
+<dctcp_converg.pdf, id=176, 722.7pt x 361.35pt>
 File: dctcp_converg.pdf Graphic file (type pdf)
-
-<use dctcp_converg.pdf>
+ <use dctcp_converg.pdf>
 Package pdftex.def Info: dctcp_converg.pdf used on input line 111.
 (pdftex.def)             Requested size: 252.93776pt x 126.46887pt.
 
@@ -754,7 +753,7 @@ Overfull \hbox (11.79027pt too wide) in paragraph at lines 111--112
  [][] 
  []
 
-<reno_converg.pdf, id=183, 722.7pt x 361.35pt>
+<reno_converg.pdf, id=177, 722.7pt x 361.35pt>
 File: reno_converg.pdf Graphic file (type pdf)
  <use reno_converg.pdf>
 Package pdftex.def Info: reno_converg.pdf used on input line 116.
@@ -790,13 +789,14 @@ Overfull \hbox (32.62268pt too wide) in paragraph at lines 58--66
 -[]Internet-[]just-[]got-[]faster .
  []
 
-[5.5 <./dctcp_converg.pdf> <./reno_converg.pdf>]
+[5.5 <./k_throughput_delay.pdf> <./dctcp_converg.pdf> <./reno_converg.pdf>]
 Missing character: There is no Ã in font cmr7!
 Missing character: There is no ¼ in font cmr7!
 Missing character: There is no â in font cmr7!
 Missing character: There is no € in font cmr7!
 Missing character: There is no ™ in font cmr7!
-) [6.6
+)
+[6.6
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 43.
@@ -815,7 +815,7 @@ Here is how much of TeX's memory you used:
  17997 multiletter control sequences out of 15000+600000
  17230 words of font info for 119 fonts, out of 8000000 for 9000
  175 hyphenation exceptions out of 8191
- 60i,11n,94p,1395b,543s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,94p,1395b,535s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texliv
@@ -829,10 +829,10 @@ onts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 si9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on tcp-congestion.pdf (6 pages, 272657 bytes).
+Output written on tcp-congestion.pdf (6 pages, 273350 bytes).
 PDF statistics:
- 294 PDF objects out of 1000 (max. 8388607)
- 244 compressed objects within 3 object streams
+ 296 PDF objects out of 1000 (max. 8388607)
+ 246 compressed objects within 3 object streams
  45 named destinations out of 1000 (max. 500000)
  20118 words of extra memory for PDF output out of 20736 (max. 10000000)
 
